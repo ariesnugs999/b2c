@@ -39,58 +39,28 @@
 ================================================== -->
 	<header class="s-header">
 
-		<!--	<div class="header-logo">-->
-		<!--		<a class="site-logo" href="-->
-		<?//= base_url()?>
-		<!--frontend/index.html">-->
-		<!--			<img src="-->
-		<?//= base_url()?>
-		<!--frontend/images/logo.svg" alt="Homepage">-->
-		<!--		</a>-->
-		<!--	</div> -->
+			<div class="header-logo">
+				<a class="site-logo" href="<?= site_url('login'); ?>">
+					<img src="<? base_url()?>frontend/images/logo.JPG" alt="Login">
+				</a>
+			</div>
 		<!-- end header-logo -->
 
 		<nav class="header-nav">
 
-			<a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
+			<a href="<?= site_url('login') ?>" title="close"><span>Close</span></a>
 
 			<div class="header-nav__content">
 				<h3>Menu</h3>
 
-				<ul class="header-nav__list">
-					<li class="current"><a class="smoothscroll" href="#home" title="home">Home</a></li>
-					<li><a class="smoothscroll" href="#gallery" title="about">Gallery</a></li>
-					<li><a class="smoothscroll" href="#location" title="services">Location</a></li>
-					<li><a class="smoothscroll" href="#contact" title="contact">Contact</a></li>
-					<li><a href="<?= site_url('login') ?>" title="login">Login</a></li>
-				</ul>
+				
 
-				<!--			<p>Perspiciatis hic praesentium nesciunt. Et neque a dolorum <a href='#0'>voluptatem</a> porro iusto sequi veritatis libero enim. Iusto id suscipit veritatis neque reprehenderit.</p>-->
+			</div> 
 
-				<ul class="header-nav__social">
-					<li>
-						<a href="#0"><i class="fab fa-facebook"></i></a>
-					</li>
-					<li>
-						<a href="#0"><i class="fab fa-twitter"></i></a>
-					</li>
-					<li>
-						<a href="#0"><i class="fab fa-instagram"></i></a>
-					</li>
-					<li>
-						<a href="#0"><i class="fab fa-behance"></i></a>
-					</li>
-					<li>
-						<a href="#0"><i class="fab fa-dribbble"></i></a>
-					</li>
-				</ul>
+		</nav> 
 
-			</div> <!-- end header-nav__content -->
-
-		</nav> <!-- end header-nav -->
-
-		<a class="header-menu-toggle" href="#0">
-			<span class="header-menu-icon"></span>
+		<a class="header-menu-toggle" href="<?= site_url('login') ?>">
+			<span></span>
 		</a>
 
 	</header> <!-- end s-header -->
@@ -116,13 +86,13 @@
 
 		</div> <!-- end home-content -->
 
-		<ul class="home-sidelinks">
+		<!-- <ul class="home-sidelinks">
 			<li><a class="smoothscroll" href="#gallery">Gallery<span>who are we</span></a></li>
 			<li><a class="smoothscroll" href="#location">Location<span>where are we</span></a></li>
 			<li><a class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li>
-		</ul> <!-- end home-sidelinks -->
+		</ul> end home-sidelinks -->
 
-		<ul class="home-social">
+		<!-- <ul class="home-social">
 			<li class="home-social-title">Follow Us</li>
 			<li><a href="#0">
 					<i class="fab fa-facebook"></i>
@@ -136,7 +106,7 @@
 					<i class="fab fa-linkedin"></i>
 					<span class="home-social-text">LinkedIn</span>
 				</a></li>
-		</ul> <!-- end home-social -->
+		</ul> end home-social -->
 
 		<a href="#gallery" class="home-scroll smoothscroll">
 			<span class="home-scroll__text">Scroll Down</span>
