@@ -141,6 +141,8 @@
     <script src="<?= $assets ?>js/core/bootstrap.min.js"></script>
     <script src="<?= $assets ?>js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= $assets ?>js/plugins/smooth-scrollbar.min.js'); ?>"></script>
+    <script src="<?= $assets ?>DataTables/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="<?= $assets ?>DataTables/DataTables-1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
     <script src="<?= $assets ?>js/plugins/chartjs.min.js'); ?>"></script>
 
