@@ -6,11 +6,87 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#SLData').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '',
-    });
+
+        function status(x) {
+            var paid = '<?= lang('paid'); ?>';
+            var partial = '<?= lang('partial'); ?>';
+            var unpaid = '<?= lang('unpaid'); ?>';
+            if (x == 'paid') {
+                return '<div class="text-center"><span class="sale_status label label-success">'+paid+'</span></div>';
+            } else if (x == 'partial') {
+                return '<div class="text-center"><span class="sale_status label label-primary">'+partial+'</span></div>';
+            } else if (x == 'unpaid') {
+                return '<div class="text-center"><span class="sale_status label label-danger">'+unpaid+'</span></div>';
+            } else {
+                return '<div class="text-center"><span class="sale_status label label-default">'+x+'</span></div>';
+            }
+        }
+
+        var table = $('#SLData').DataTable({
+
+            'ajax' : { url: '<?=site_url('sales/get_sales');?>', type: 'POST', "data": function ( d ) {
+                d.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash()?>";
+            }},
+            "buttons": [
+            { extend: 'copyHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
+            { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
+            { extend: 'csvHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
+            { extend: 'pdfHtml5', orientation: 'landscape', pageSize: 'A4', 'footer': true,
+            exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
+            { extend: 'colvis', text: 'Columns'},
+            ],
+            "columns": [
+            { "data": "id", "visible": false },
+            { "data": "date", "render": hrld },
+            { "data": "customer_name" },
+            { "data": "total", "render": currencyFormat },
+            { "data": "total_tax", "render": currencyFormat },
+            { "data": "total_discount", "render": currencyFormat },
+            { "data": "grand_total", "render": currencyFormat },
+            { "data": "paid", "render": currencyFormat },
+            { "data": "balance", "render": currencyFormat },
+            { "data": "status", "render": status },
+            { "data": "Actions", "searchable": false, "orderable": false }
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                nRow.id = aData.id;
+                return nRow;
+            },
+            "footerCallback": function (  tfoot, data, start, end, display ) {
+                var api = this.api(), data;
+                $(api.column(3).footer()).html( cf(api.column(3).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(4).footer()).html( cf(api.column(4).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(5).footer()).html( cf(api.column(5).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(6).footer()).html( cf(api.column(6).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(7).footer()).html( cf(api.column(7).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(8).footer()).html( cf(api.column(8).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+            }
+
+        });
+
+        $('#search_table').on( 'keyup change', function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (((code == 13 && table.search() !== this.value) || (table.search() !== '' && this.value === ''))) {
+                table.search( this.value ).draw();
+            }
+        });
+
+        table.columns().every(function () {
+            var self = this;
+            $( 'input.datepicker', this.footer() ).on('dp.change', function (e) {
+                self.search( this.value ).draw();
+            });
+            $( 'input:not(.datepicker)', this.footer() ).on('keyup change', function (e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (((code == 13 && self.search() !== this.value) || (self.search() !== '' && this.value === ''))) {
+                    self.search( this.value ).draw();
+                }
+            });
+            $( 'select', this.footer() ).on( 'change', function (e) {
+                self.search( this.value ).draw();
+            });
+        });
+
     });
 </script>
 
