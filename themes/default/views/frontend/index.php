@@ -39,14 +39,14 @@
 ================================================== -->
 	<header class="s-header">
 
-			<div class="header-logo">
-				<a class="site-logo" href="<?= site_url('login'); ?>">
-					<img src="<? base_url()?>frontend/images/logo.JPG" alt="Login">
-				</a>
-			</div>
+		<!-- <div class="header-logo">
+			<a class="site-logo" href="<?= site_url('login'); ?>">
+				<img src="<? base_url()?>frontend/images/logo.JPG" alt="Login">
+			</a>
+		</div> -->
 		<!-- end header-logo -->
 
-		<nav class="header-nav">
+		<!-- <nav class="header-nav">
 
 			<a href="<?= site_url('login') ?>" title="close"><span>Close</span></a>
 
@@ -61,7 +61,15 @@
 
 		<a class="header-menu-toggle" href="<?= site_url('login') ?>">
 			<span></span>
-		</a>
+		</a> -->
+
+		<div class="full-width" style="position: unset;">
+			<div class="pull-right" style="margin: 20px 50px;">
+				<a class="site-logo" href="<?= site_url('login'); ?>">
+					<i class="icon-user home-scroll__text" style="font-size: 16px;" aria-hidden="true"> Login</i>
+				</a>
+			</div>
+		</div>
 
 	</header> <!-- end s-header -->
 
