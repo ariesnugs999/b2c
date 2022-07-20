@@ -3413,3 +3413,11 @@ html.no-csstransitions .home-content__main {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+/*Add by Bayu*/
+@media only screen and (max-width: 800px) {
+  header .home-scroll__text{
+    display: inline-block;
+    right: 0;
+  }
+}
