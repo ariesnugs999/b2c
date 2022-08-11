@@ -66,7 +66,7 @@
               </li> -->
 
         <li class="nav-item">
-          <a class="nav-link active" href="../pages/dashboard.html">
+          <a class="nav-link active" href="<?= site_url('home'); ?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
@@ -83,13 +83,27 @@
           </a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link " href="../pages/billing.html">
+          <a class="nav-link " href="<?= site_url('sales'); ?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Sales</span>
           </a>
         </li>
+
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= site_url('users'); ?>">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Profile</span>
+          </a>
+        </li>
+
         <!-- <li class="nav-item">
           <a class="nav-link " href="../pages/virtual-reality.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -136,7 +150,7 @@
       </ul>
     </div>
 
-    <div class="sidenav-footer mx-3 ">
+    <!-- <div class="sidenav-footer mx-3 "> -->
       <!-- <div class="card card-plain shadow-none" id="sidenavCard">
         <img class="w-50 mx-auto" src=" <?php echo base_url('assets/img/illustrations/icon-documentation.svg'); ?>" alt="sidebar_illustration">
         <div class="card-body text-center p-3 w-100 pt-0">
@@ -146,9 +160,9 @@
           </div>
         </div>
       </div> -->
-      <a href="" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a>
+      <!-- <a href="" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a> -->
       <!-- <a class="btn btn-primary btn-sm mb-0 w-100" href="" type="button">Upgrade to pro</a> -->
-    </div>
+    <!-- </div> -->
     
   </aside>
 
@@ -159,9 +173,10 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
              
-              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Selamat Datang</li>
+              <li class="breadcrumb-item text-sm text-white active" aria-current="page"><h6 class="font-weight-bolder text-white mb-0">PT. Pasir Tengah </h6>Induk Management System</li>
             </ol>
-            <h6 class="font-weight-bolder text-white mb-0"><?= $this->session->username; ?></h6>
+            <!-- <h6 class="font-weight-bolder text-white mb-0"><?= $this->session->username; ?></h6> -->
+            
           </nav>
           <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -172,7 +187,7 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
               <li class="nav-item d-flex align-items-center">
-                <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                <a href="<?= site_url('users'); ?>" class="nav-link text-white font-weight-bold px-0">
                   <i class="fa fa-user me-sm-1"></i>
                   <span class="d-sm-inline d-none"><?= $this->session->username; ?></span>
                 </a>

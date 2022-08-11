@@ -15,11 +15,11 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title"><?= lang('list_results'); ?></h3>
+            <div class="box box-primary card">
+                <div class="box-header card-header">
+                    <h3 class="box-title card-title"><?= lang('users'); ?></h3>
                 </div>
-                <div class="box-body">
+                <div class="box-body card-body">
                     <table id="UTable" class="table table-bordered table-striped table-hover">
                         <thead class="cf">
                         <tr>
