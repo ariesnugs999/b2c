@@ -24,28 +24,32 @@
 
         var table = $('#SLData').DataTable({
 
-            'ajax' : { url: '<?=site_url('sales/get_sales');?>', type: 'POST', "data": function ( d ) {
+            'ajax' : { url: '<?=site_url('home/get_invoice');?>', type: 'POST', "data": function ( d ) {
                 d.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash()?>";
             }},
             "buttons": [
-            { extend: 'copyHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
-            { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
-            { extend: 'csvHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
+            { extend: 'copyHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ] } },
+            { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ] } },
+            { extend: 'csvHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ] } },
             { extend: 'pdfHtml5', orientation: 'landscape', pageSize: 'A4', 'footer': true,
-            exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] } },
+            exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ] } },
             { extend: 'colvis', text: 'Columns'},
             ],
             "columns": [
-            { "data": "id", "visible": false },
-            { "data": "date", "render": hrld },
-            { "data": "customer_name" },
-            { "data": "total", "render": currencyFormat },
-            { "data": "total_tax", "render": currencyFormat },
-            { "data": "total_discount", "render": currencyFormat },
-            { "data": "grand_total", "render": currencyFormat },
-            { "data": "paid", "render": currencyFormat },
-            { "data": "balance", "render": currencyFormat },
-            { "data": "status", "render": status },
+            { "data": "invoice_no", "visible": false },
+            { "data": "invoice_date", "render": hrld },
+            { "data": "due_date" },
+            { "data": "currency", "render": currencyFormat },
+            { "data": "debit", "render": currencyFormat },
+            { "data": "total_debit", "render": currencyFormat },
+            { "data": "top" },
+            { "data": "finance_receipt_no" },
+            { "data": "finance_receipt_date" },
+            { "data": "bank" },
+            { "data": "credit", "render": currencyFormat },
+            { "data": "total_credit", "render": currencyFormat },
+            { "data": "cek" },
+            { "data": "category" },
             { "data": "Actions", "searchable": false, "orderable": false }
             ],
             "fnRowCallback": function (nRow, aData, iDisplayIndex) {
@@ -60,6 +64,10 @@
                 $(api.column(6).footer()).html( cf(api.column(6).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
                 $(api.column(7).footer()).html( cf(api.column(7).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
                 $(api.column(8).footer()).html( cf(api.column(8).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(9).footer()).html( cf(api.column(9).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(10).footer()).html( cf(api.column(10).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(11).footer()).html( cf(api.column(11).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
+                $(api.column(12).footer()).html( cf(api.column(12).data().reduce( function (a, b) { return pf(a) + pf(b); }, 0)) );
             }
 
         });
@@ -113,12 +121,16 @@
                                         <th><?= lang("Credit"); ?></th>
                                         <th><?= lang("Saldo"); ?></th>
                                         <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
                                         <th style="min-width:115px; max-width:115px; text-align:center;"><?= lang("actions"); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="9" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                        <td colspan="13" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
@@ -131,10 +143,14 @@
                                         <th><?= lang("Credit"); ?></th>
                                         <th><?= lang("Saldo"); ?></th>
                                         <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
+                                        <th><?= lang("Metode_Bayar"); ?></th>
                                         <th style="min-width:115px; max-width:115px; text-align:center;"><?= lang("actions"); ?></th>
                                     </tr>
                                     <tr>
-                                        <td colspan="9" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="<?= lang('type_hit_enter'); ?>" style="width:100%;"></td>
+                                        <td colspan="13" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="<?= lang('type_hit_enter'); ?>" style="width:100%;"></td>
                                     </tr>
                                 </tfoot>
                             </table>
