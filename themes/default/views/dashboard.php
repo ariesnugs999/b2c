@@ -44,19 +44,21 @@
                         <table id="ITable" class="table table-bordered table-striped table-hover">
                             <thead class="cf">
                             <tr>
-                                <th><?php echo lang('Invoice No.'); ?></th>
-                                <th><?php echo lang('Invoice Date'); ?></th>
-                                <th><?php echo lang('Due Date'); ?></th>
-                                <th><?php echo lang('currency'); ?></th>
-                                <th><?php echo lang('Total Debit'); ?></th>
-                                <th><?php echo lang('TOP'); ?></th>
-                                <th><?php echo lang('Finance Receipt No.'); ?></th>
-                                <th><?php echo lang('Finance Receipt Date'); ?></th>
-                                <th><?php echo lang('Total Credit'); ?></th>
-                                <th><?php echo lang('Debit'); ?></th>
-                                <th><?php echo lang('Credit'); ?></th>
-                                <th><?php echo lang('Saldo'); ?></th>
-                                <th><?php echo lang('Status'); ?></th>
+                                <th class="text-center" colspan="2"><?php echo lang('Sales Invoice'); ?></th>
+                                <th class="text-center" colspan="2"><?php echo lang('Sales Receipt'); ?></th>
+                                <th class="text-center" rowspan="2" style="vertical-align: top;"><?php echo lang('Due Date'); ?></th>
+                                <th class="text-center" rowspan="2" style="vertical-align: top;"><?php echo lang('TOP'); ?></th>
+                                <th class="text-center" colspan="3"><?php echo lang('Amount'); ?></th>
+                                <th class="text-center" rowspan="2" style="vertical-align: top;"><?php echo lang('Status'); ?></th>
+                            </tr>
+                            <tr>
+                                <th class="text-center"><?php echo lang('No'); ?></th>
+                                <th class="text-center"><?php echo lang('Date'); ?></th>
+                                <th class="text-center"><?php echo lang('No'); ?></th>
+                                <th class="text-center"><?php echo lang('Date'); ?></th>
+                                <th class="text-center"><?php echo lang('Debit'); ?></th>
+                                <th class="text-center"><?php echo lang('Credit'); ?></th>
+                                <th class="text-center"><?php echo lang('Saldo'); ?></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,13 +68,10 @@
                                 echo '<tr>';
                                 echo '<td>' . $vi->invoice_no . '</td>';
                                 echo '<td>' . $vi->invoice_date . '</td>';
+                                echo '<td>' . $vi->finance_receipt_no . '</td>';
+                                echo '<td>' . $vi->finance_receipt_date . '</td>';
                                 echo '<td>' . $vi->due_date . '</td>';
-                                echo '<td>' . $vi->currency . '</td>';
-                                echo '<td>' . $vi->debit . '</td>';
-                                echo '<td>' . $vi->debit . '</td>';
-                                echo '<td>' . $vi->debit . '</td>';
-                                echo '<td>' . $vi->debit . '</td>';
-                                echo '<td>' . $vi->debit . '</td>';
+                                echo '<td>' . $vi->top . '</td>';
 
                                 $cek = $vi->cek;
                                 if ($cek == 'SI'){
