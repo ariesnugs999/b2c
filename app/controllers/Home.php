@@ -21,14 +21,21 @@ class Home extends MY_Controller
     }
 
     function index() {
+        if (!$this->loggedIn) {
+            redirect('login');
+        }
+        if (!$this->Admin) {
+            $this->session->set_flashdata('warning', lang("access_denied"));
+            redirect($_SERVER["HTTP_REFERER"]);
+        }
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['topProducts'] = $this->welcome_model->topProducts();
         $this->data['chartData'] = $this->welcome_model->getChartData();
+        $this->data['view_invoice'] = $this->welcome_model->view_invoice();
         $this->data['page_title'] = lang('dashboard');
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
         $this->page_construct('dashboard', $this->data, $meta);
-
     }
 
     function disabled() {

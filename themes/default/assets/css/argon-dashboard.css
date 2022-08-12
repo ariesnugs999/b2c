@@ -26934,3 +26934,8 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+/*Modif by Bayu*/
+.navbar-vertical.navbar-expand-xs .navbar-collapse {
+  /*height: calc(500vh - 360px);*/
+}
