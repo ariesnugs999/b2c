@@ -96,7 +96,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link active" href="<?= site_url('users'); ?>">
+          <a class="nav-link active" href="<?php echo base_url(); ?>users/profile/<?php echo $this->session->user_id; ?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
@@ -187,7 +187,7 @@
             </div>
             <ul class="navbar-nav  justify-content-end">
               <li class="nav-item d-flex align-items-center">
-                <a href="<?= site_url('users'); ?>" class="nav-link text-white font-weight-bold px-0">
+                <a href="<?php echo base_url(); ?>users/profile/<?php echo $this->session->user_id; ?>" class="nav-link text-white font-weight-bold px-0">
                   <i class="fa fa-user me-sm-1"></i>
                   <span class="d-sm-inline d-none"><?= $this->session->username; ?></span>
                 </a>
