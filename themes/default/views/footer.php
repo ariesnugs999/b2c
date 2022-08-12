@@ -144,6 +144,10 @@
     <script src="<?= $assets ?>DataTables/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="<?= $assets ?>DataTables/DataTables-1.12.1/js/dataTables.bootstrap4.min.js"></script>
 
+    <!-- Jquery -->
+    <!-- <script src="<?= $assets ?>DataTables/jquery-3.5.1.js"></script> -->
+    <script src="<?= $assets ?>DataTables/jquery-1.11.0.min.js"></script>
+
     <script src="<?= $assets ?>js/plugins/chartjs.min.js"></script>
 
     <script src="<?= $assets ?>js/plugins/chartjs.min.js"></script>
