@@ -35,7 +35,7 @@ class Sales extends MY_Controller {
         } else {
             $this->datatables->select("id, DATE_FORMAT(date, '%Y-%m-%d %H:%i') as date, customer_name, total, total_tax, total_discount, grand_total, paid, (grand_total-paid) as balance, status");
         }
-        $this->datatables->from('v_so');
+        $this->datatables->from('sales');
         $this->datatables->where('status', 'paid');
         if (!$this->Admin && !$this->session->userdata('view_right')) {
             $this->datatables->where('created_by', $this->session->userdata('user_id'));
