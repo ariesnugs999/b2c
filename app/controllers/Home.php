@@ -24,7 +24,7 @@ class Home extends MY_Controller
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['topProducts'] = $this->welcome_model->topProducts();
         $this->data['chartData'] = $this->welcome_model->getChartData();
-        $this->data['view_data'] = $this->welcome_model->view_data();
+        $this->data['view_so'] = $this->welcome_model->viewSO();
         $this->data['page_title'] = lang('dashboard');
         $bc = array(array('link' => '#', 'page' => lang('dashboard')));
         $meta = array('page_title' => lang('dashboard'), 'bc' => $bc);
@@ -60,6 +60,32 @@ class Home extends MY_Controller
             echo '<h1>Error signing message</h1>';
             exit(1);
         }
+    }
+
+    function get_sales() {
+        $this->load->library('datatables');
+        if ($this->db->dbdriver == 'sqlite3') {
+            $this->datatables->select("invoice_no, strftime('%Y-%m-%d %H:%M', date) as date, customer_name, total, total_tax, total_discount, grand_total, paid, (grand_total-paid) as balance, status");
+        } else {
+            $this->datatables->select("id, DATE_FORMAT(date, '%Y-%m-%d %H:%i') as date, customer_name, total, total_tax, total_discount, grand_total, paid, (grand_total-paid) as balance, status");
+        }
+        $this->datatables->from('sales');
+        $this->datatables->where('status', 'paid');
+        if (!$this->Admin && !$this->session->userdata('view_right')) {
+            $this->datatables->where('created_by', $this->session->userdata('user_id'));
+        }
+        $this->datatables->where('store_id', $this->session->userdata('store_id'));
+        $this->datatables->add_column("Actions", "<div class='text-center'>
+        <div class='btn-group'>
+        <a href='" . site_url('pos/view/$1/1') . "' title='".lang("view_invoice")."' class='tip btn btn-primary btn-xs' data-toggle='ajax-modal'><i class='fa fa-list'></i></a> 
+        <a href='".site_url('sales/payments/$1')."' title='" . lang("view_payments") . "' class='tip btn btn-primary btn-xs' data-toggle='ajax'><i class='fa fa-money'></i></a> 
+        <a href='".site_url('sales/add_payment/$1')."' title='" . lang("add_payment") . "' class='tip btn btn-primary btn-xs' data-toggle='ajax'><i class='fa fa-briefcase'></i></a> 
+        <a href='" . site_url('pos/?edit=$1') . "' title='".lang("edit_invoice")."' class='tip btn btn-warning btn-xs'><i class='fa fa-edit'></i></a> <a href='" . site_url('sales/delete/$1') . "' onClick=\"return confirm('". lang('alert_x_sale') ."')\" title='".lang("delete_sale")."' class='tip btn btn-danger btn-xs'><i class='fa fa-trash-o'></i></a>
+        </div>
+        </div>", "id");
+
+        // $this->datatables->unset_column('id');
+        echo $this->datatables->generate();
     }
 
 }

@@ -102,7 +102,6 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive py-4">
-                            <!-- <table id="SLData" class="table table-striped table-bordered" > -->
                             <table id="SLData" class="table table-striped table-bordered" >
                                 <thead>
                                     <tr class="active">
@@ -118,28 +117,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                        <?php
-                            foreach ($record->result_array() as $row){
-                            echo '
-                                <td>$no</td>
-                                <td><a href="#" class="detail-barang" data-id='$row[id_barang]' title='Detail Barang $row[kode_barang]'>$row[kode_barang]</a></td>
-                                <td><a href='#' class='detail-barang' data-id='$row[id_barang]' title='Detail Barang $row[nama_barang]'>$row[nama_barang]</a></td>
-                                <td>$row[nama_kategori]</td>
-                                <td>".rupiah($stok['stok'])."</td>
-                                <td>$row[kode_satuan]</td>
-                                <td>".rupiah($harga1['harga'])."</td>
-                                <td class='$conf[harga_grosir]'>".rupiah($harga2['harga'])."</td>
-                                <td class='$conf[harga_grosir]'>".rupiah($harga3['harga'])."</td>
-                                <td class='$conf[harga_grosir]'>".rupiah($harga4['harga'])."</td>
-                                <td>".rupiah($row['harga_beli'])."</td>
-                                <td><center>
-                                <a class='btn btn-success btn-xs' title='Edit Data' href='".base_url()."app/edit_barang/$row[id_barang]'><span class='glyphicon glyphicon-edit'></span></a>
-                                <a class='btn btn-danger btn-xs' title='Delete Data' href='".base_url()."app/delete_barang/$row[id_barang]' onclick=\"return confirm('Apa anda yakin untuk hapus Data ini?')\"><span class='glyphicon glyphicon-remove'></span></a>
-                                </center></td>
-                                <tr>
-                                    <td colspan="9" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
-                                </tr>';
-                            } ?>
+                                    <tr>
+                                        <td colspan="9" class="dataTables_empty"><?= lang('loading_data_from_server'); ?></td>
+                                    </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr class="active">
