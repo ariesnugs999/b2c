@@ -41,7 +41,78 @@
                 </div>
                 <div class="box-body card-body">
                     <div class="table-responsive py-4" style="font-size:12px;">
-                        
+                        <table id="ITable" class="table align-items-center table-dark">
+                            <thead class="cf">
+                            <tr>
+                                <th><?php echo lang('Invoice No.'); ?></th>
+                                <th><?php echo lang('Invoice Date'); ?></th>
+                                <th><?php echo lang('Due Date'); ?></th>
+                                <th><?php echo lang('currency'); ?></th>
+                                <th><?php echo lang('Total Debit'); ?></th>
+                                <th><?php echo lang('TOP'); ?></th>
+                                <th><?php echo lang('Finance Receipt No.'); ?></th>
+                                <th><?php echo lang('Finance Receipt Date'); ?></th>
+                                <th><?php echo lang('Total Credit'); ?></th>
+                                <th><?php echo lang('Debit'); ?></th>
+                                <th><?php echo lang('Credit'); ?></th>
+                                <th><?php echo lang('Saldo'); ?></th>
+                                <th><?php echo lang('Status'); ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($view_invoice as $vi) {
+                                $saldo = 0;
+                                echo '<tr>';
+                                echo '<td>' . $vi->invoice_no . '</td>';
+                                echo '<td>' . $vi->invoice_date . '</td>';
+                                echo '<td>' . $vi->due_date . '</td>';
+                                echo '<td>' . $vi->currency . '</td>';
+                                echo '<td>' . $vi->debit . '</td>';
+                                echo '<td>' . $vi->debit . '</td>';
+                                echo '<td>' . $vi->debit . '</td>';
+                                echo '<td>' . $vi->debit . '</td>';
+                                echo '<td>' . $vi->debit . '</td>';
+
+                                $cek = $vi->cek;
+                                if ($cek == 'SI'){
+                                    $debit = $vi->debit;
+                                    $credit = '';
+                                    if ($vi->due_date > 0){
+                                        $dateDue = date('d-M-Y',strtotime($vi->due_date));
+                                        // $overDue = (strtotime($toDay) - strtotime($dtRB['due_date']))/(3600*24);
+                                    }
+
+                                    $status = 'ON SCHEDULE';
+                                    // if ($overDue > 0){
+                                    //     $status = 'OVER DUE';
+                                    // }
+                                    $saldo = $vi->debit - $vi->total_credit;
+                                    if ($saldo < 1){
+                                        $status = 'SOLVED';
+                                        $overDue = 0;
+                                    }
+                                    echo '<td>' . $debit . '</td>';
+                                    echo '<td>' . $credit . '</td>';
+                                    echo '<td>' . $saldo . '</td>';
+                                    echo '<td>' . $status . '</td>';
+
+                                } elseif($cek == 'SR'){
+                                    $debit = 0;
+                                    $credit = $vi->credit;
+                                    $saldo = $saldo + $debit - $credit;          
+                                    $status = '';
+
+                                    echo '<td>' . $debit . '</td>';
+                                    echo '<td>' . $credit . '</td>';
+                                    echo '<td>' . $saldo . '</td>';
+                                    echo '<td>' . $status . '</td>';
+                                }
+                                echo '</tr>';
+                            }
+                            ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
