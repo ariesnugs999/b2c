@@ -207,7 +207,7 @@
               <li class="nav-item d-flex align-items-center">
                 <a href="<?php echo base_url(); ?>users/profile/<?php echo $this->session->user_id; ?>" class="nav-link text-white font-weight-bold px-0">
                   <i class="fa fa-user me-sm-1"></i>
-                  <span class="d-sm-inline d-none"><?= $this->session->username; ?></span>
+                  <span class="d-sm-inline d-none"><?= $this->session->username; ?>-<?= $this->session->account_customer; ?></span>
                 </a>
               </li>
               <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
