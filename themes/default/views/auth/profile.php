@@ -6,17 +6,17 @@
             <div class="nav-tabs-custom card">
                 <div class="card-header">
                     <div style="float: left;" class="ms-md-auto pe-md-12 d-flex align-items-center">
-                        <h3 class="box-title card-title"><?= lang('users'); ?></h3>
+                        <h6 class="box-title card-title"><?= lang('users'); ?></h6>
                     </div>
                     <div style="float: left;" class="ms-md-auto pe-md-12 d-flex align-items-center">
-                        <h3 class="box-title card-title text-white"><?= lang('users'); ?></h3>
+                        <h6 class="box-title card-title text-white"><?= lang('users'); ?></h6>
                     </div>
                 <!-- <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#edit_profile"><?= lang('edit'); ?></a></li>
                     <li><a data-toggle="tab" href="#avatar"><?= lang('avatar'); ?></a></li>
                     <li><a data-toggle="tab" href="#cpassword"><?= lang('change_password'); ?></a></li>
                 </ul> -->
-                <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false" style="padding-top: 0;left: 10%;">
+                <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false" style="padding-top: 0;left: 10%;">
 
                     <div class="container-fluid py-1 px-3" style="padding-top: 0 !important;">
                         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
@@ -25,11 +25,11 @@
                                 <!-- <a href="javascript:;" class="nav-link p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                   <i class="fa fa-bell cursor-pointer"></i>
                                 </a> -->
-                                <a href="javascript:;" class="btn btn-link text-secondary mb-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a href="javascript:;" class="text-secondary mb-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
                                 </a>
 
-                                <!-- <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                   <li class="mb-2">
                                     <a class="dropdown-item border-radius-md" href="#edit_profile"><?= lang('edit'); ?>">
                                       <div class="d-flex py-1">
@@ -89,14 +89,14 @@
                                       </div>
                                     </a>
                                   </li>
-                                </ul> -->
+                                </ul>
                               </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
 
-                <ul class="nav nav-tabs">
+                <ul width="100%" class="nav nav-tabs">
                 </ul>
 
                 </div>

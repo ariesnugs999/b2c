@@ -5,6 +5,7 @@ class Home extends MY_Controller
 
     function __construct() {
         parent::__construct();
+        $this->load->helper('pos');
 
         if (! $this->loggedIn) {
             redirect('login');
