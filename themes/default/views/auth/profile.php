@@ -9,7 +9,7 @@
                         <h6 class="box-title card-title"><?= lang('users'); ?></h6>
                     </div>
                     <div style="float: left;" class="ms-md-auto pe-md-12 d-flex align-items-center">
-                        <h6 class="box-title card-title text-white"><?= lang('users'); ?></h6>
+                        <h6 class="box-title card-title text-white"><?= lang('users'); ?><?= lang('users'); ?><?= lang('users'); ?></h6>
                     </div>
                 <!-- <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#edit_profile"><?= lang('edit'); ?></a></li>
