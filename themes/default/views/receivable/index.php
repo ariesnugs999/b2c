@@ -38,6 +38,7 @@
             <div class="box box-primary card">
                 <div class="box-header card-header">
                     <h6 class="box-title card-title"><?= lang('Receivable (Hutang)'); ?></h6>
+                    <h7 class="box-tittle card-title"><?= $this->session->username; ?>-<?= $this->session->account_customer; ?></h7>
                 </div>
                 <div class="box-body card-body">
                     <div class="table-responsive py-4" style="font-size:12px;">
