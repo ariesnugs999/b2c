@@ -70,7 +70,7 @@
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->invoice_date . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_no . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_date . '</td>';
-                                echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->date("d M Y", strtotime(due_date)) . '</td>';
+                                echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->due_date . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->top . '</td>';
 
                                 $cek = $vi->cek;
