@@ -110,15 +110,8 @@ class Welcome_model extends CI_Model
     public function view_invoice() {
         // $this->db->select("invoice_no, invoice_date, due_date, currency, debit, total_debit, top, finance_receipt_no, finance_receipt_date, bank, credit, total_credit, cek, category");
         // $q = $this->db->get('v_so');
-<<<<<<< HEAD
-        $account_id = $this->session->userdata('account_customer');
-        $this->db->select("invoice_no, invoice_date, due_date, currency, debit, total_debit, top, finance_receipt_no, finance_receipt_date, bank, credit, total_credit, cek, category")
-        ->where('account_customer', $account_id);
-        $q = $this->db->get('v_so');
-=======
         $this->db->where('account_customer', $this->session->userdata('account_customer'));
         $q = $this->db->query("SELECT invoice_no, invoice_date, due_date, currency, debit, total_debit, top, finance_receipt_no, finance_receipt_date, bank, credit, total_credit, cek, category FROM v_so");
->>>>>>> 957499d9f055bdd9ee8924141d7e4a39729662e4
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
