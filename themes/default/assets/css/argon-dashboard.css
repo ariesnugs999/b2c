@@ -26948,3 +26948,6 @@ pre[class*="language-"] {
 .py-4 {
   padding-top: 1rem !important;
 }
+.btn {
+  --bs-btn-line-height: 1.3;
+}
