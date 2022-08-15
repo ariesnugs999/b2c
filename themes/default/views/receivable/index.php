@@ -64,8 +64,10 @@
                             </thead>
                             <tbody>
                             <?php
+                            $saldo = 0;
+                            $totDebit = 0;
+                            $totCredit = 0;
                             foreach ($view_invoice as $vi) {
-                                $saldo = 0;
                                 echo '<tr>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->invoice_no . '</td>';
                                 echo '<td class="text-center" style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . tgl_indo2($vi->invoice_date) . '</td>';
@@ -76,8 +78,8 @@
 
                                 $cek = $vi->cek;
                                 if ($cek == 'SI'){
-                                    $debit = $vi->debit;
-                                    $credit = 0;
+                                    //$debit = $vi->debit;
+                                    //$credit = 0;
                                     if ($vi->due_date > 0){
                                         $dateDue = date('d-M-Y',strtotime($vi->due_date));
                                         // $overDue = (strtotime($toDay) - strtotime($dtRB['due_date']))/(3600*24);
@@ -87,25 +89,60 @@
                                     // if ($overDue > 0){
                                     //     $status = 'OVER DUE';
                                     // }
-                                    $saldo = $vi->debit - $vi->total_credit;
-                                    if ($saldo < 1){
+                                    
+                                    $aSaldo = $vi->debit - $vi->total_credit;
+                                    if ($aSaldo < 1){
                                         $status = 'SOLVED';
                                         $overDue = 0;
                                     }
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $debit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $credit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $saldo . '</td>';
+
+                                    $debit = $vi->debit;
+                                    if ($debit == '') {
+                                        $debit_hsl = 0;
+                                    } else{
+                                        $debit_hsl = $vi->debit;
+                                    }
+
+                                    $credit = $vi->credit;
+                                    if ($credit == '') {
+                                        $credit_hsl = 0;
+                                    } else{
+                                        $credit_hsl = $vi->credit;
+                                    }
+                                    $saldo = $saldo + $debit_hsl - $credit_hsl;
+                                    $totDebit = $totDebit + $debit_hsl;
+                                    $totCredit = $totCredit + $credit_hsl;
+
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $this->tec->formatNumber($debit_hsl) . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $this->tec->formatNumber($credit_hsl) . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $this->tec->formatNumber($saldo) . '</td>';
                                     echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $status . '</td>';
 
                                 } elseif($cek == 'SR'){
-                                    $debit = 0;
-                                    $credit = $vi->credit;
-                                    $saldo = $saldo + $debit - $credit;          
+                                    //$debit = 0;
+                                    //$credit = $vi->credit;
                                     $status = '';
 
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $debit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $credit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $saldo . '</td>';
+                                    $debit = $vi->debit;
+                                    if ($debit == '') {
+                                        $debit_hsl = 0;
+                                    } else{
+                                        $debit_hsl = $vi->debit;
+                                    }
+
+                                    $credit = $vi->credit;
+                                    if ($credit == '') {
+                                        $credit_hsl = 0;
+                                    } else{
+                                        $credit_hsl = $vi->credit;
+                                    }
+                                    $saldo = $saldo + $debit_hsl - $credit_hsl;
+                                    $totDebit = $totDebit + $debit_hsl;
+                                    $totCredit = $totCredit + $credit_hsl;
+
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $this->tec->formatNumber($debit_hsl) . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $this->tec->formatNumber($credit_hsl) . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $this->tec->formatNumber($saldo) . '</td>';
                                     echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $status . '</td>';
                                 }
                                 echo '</tr>';

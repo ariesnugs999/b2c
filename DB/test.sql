@@ -76,42 +76,6 @@ SELECT
 UNION ALL
 
 SELECT 	
-	f.invoice_no AS invoice_no,
-	f.invoice_date AS invoice_date,
-	'' AS delivery_order_no,
-	'' AS due_date,
-	'' AS currency,
-	'' AS debit,
-	f.amount_total AS total_debit,
-	'' AS top,
-	'' AS sales_order_no,
-	r.receipt_no AS finance_receipt_no,
-	r.receipt_date AS finance_receipt_date,
-	'' AS bank,
-	SUM(ri.amount) AS credit,
-	IFNULL(fri.total_credit, 0) AS total_credit,
-	'SR' AS cek,
-	'CASH' AS category
-				
-				FROM paste_finance_receipt_items AS ri
-				INNER JOIN paste_finance_receipt AS r ON r.receipt_no=ri.receipt_no
-				INNER JOIN paste_finance_invoice AS f ON f.invoice_no=ri.invoice_no
-				LEFT JOIN
-						(SELECT f1.invoice_no,SUM(fr1.amount) AS total_credit
-						FROM paste_finance_receipt_items AS fr1
-						INNER JOIN paste_finance_receipt AS fr ON fr1.receipt_no=fr.receipt_no
-						INNER JOIN paste_finance_invoice AS f1 ON f1.invoice_no=fr1.invoice_no
-						
-						WHERE fr.status_id='3'
-						GROUP BY f1.invoice_no) AS fri ON fri.invoice_no=f.invoice_no
-				
-				WHERE r.status_id='3'
-				AND f.category='SALES' AND f.status_id='3'
-				GROUP BY r.receipt_no,f.invoice_no
-				
-UNION ALL
-
-SELECT 	
 	fn.invoice_no AS invoice_no,
 	fn.invoice_date AS invoice_date,
 	'' AS delivery_order_no,
