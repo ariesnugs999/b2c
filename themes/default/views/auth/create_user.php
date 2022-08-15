@@ -70,6 +70,16 @@
                             echo form_dropdown('store_id', $st, set_value('store_id'), 'id="store_id" data-placeholder="' . lang("select") . ' ' . lang("store") . '" class="form-control input-tip select2" style="width:100%;"');
                             ?>
                         </div>
+                        <div class="form-group customer-con">
+                            <?= lang("customer", "customer_id"); ?>
+                            <?php
+                            $st[""] = "";
+                            foreach ($customer as $customer) {
+                                $st[$customer->no] = $customer->account;
+                            }
+                            echo form_dropdown('customer_id', $st, set_value('customer_id'), 'id="customer_id" data-placeholder="' . lang("select") . ' ' . lang("store") . '" class="form-control input-tip select2" style="width:100%;"');
+                            ?>
+                        </div>
                         <div class="form-group">
                             <label class="checkbox" for="notify"><input type="checkbox" name="notify" value="1" id="notify" checked="checked"/> <?= lang('notify_user_by_email') ?></label>
                         </div>

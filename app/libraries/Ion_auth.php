@@ -7,6 +7,7 @@ class Ion_auth
     public $_extra_where = array();
     public $_extra_set = array();
     public $_cache_user_in_group;
+    public $_cache_user_in_customer;
 
     public function __construct() {
         $this->load->config('ion_auth', TRUE);
