@@ -29,7 +29,7 @@
                                     <i class="fa fa-ellipsis-v text-xs" aria-hidden="true"></i>
                                 </a>
 
-                                <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                <!-- <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                   <li class="mb-2">
                                     <a class="dropdown-item border-radius-md" href="#edit_profile"><?= lang('edit'); ?>">
                                       <div class="d-flex py-1">
@@ -89,7 +89,7 @@
                                       </div>
                                     </a>
                                   </li>
-                                </ul>
+                                </ul> -->
                               </li>
                             </ul>
                         </div>

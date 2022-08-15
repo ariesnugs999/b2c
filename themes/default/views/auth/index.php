@@ -17,7 +17,7 @@
         <div class="col-xs-12">
             <div class="box box-primary card">
                 <div class="box-header card-header">
-                    <h3 class="box-title card-title"><?= lang('users'); ?></h3>
+                    <h6 class="box-title card-title"><?= lang('users'); ?></h6>
                 </div>
                 <div class="box-body card-body">
                     <table id="UTable" class="table table-bordered table-striped table-hover">
