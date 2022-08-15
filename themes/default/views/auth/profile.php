@@ -186,6 +186,16 @@
                                         echo form_dropdown('store_id', $st, $user->store_id, 'id="store_id" data-placeholder="' . lang("select") . ' ' . lang("store") . '" class="form-control input-tip select2" style="width:100%;"');
                                         ?>
                                     </div>
+                                    <div class="form-group">
+                                        <?= lang("customer", "customer_account"); ?>
+                                        <?php
+                                        $cs[""] = "";
+                                        foreach ($customer1 as $customer1) {
+                                            $cs[$customer1['no']] = $customer1['account'];
+                                        }
+                                        echo form_dropdown('customer', $cs, $user->account_customer, 'id="customer_account" data-placeholder="' . lang("select") . ' ' . lang("group") . '" class="form-control input-tip select2" style="width:100%;"');
+                                        ?>
+                                    </div>
                                 <?php } ?>
                             </div>
 

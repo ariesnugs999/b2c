@@ -21,6 +21,7 @@ class Auth_model extends CI_Model {
     protected $error_start_delimiter;
     protected $error_end_delimiter;
     public $_cache_user_in_group = array();
+    public $_cache_user_in_customer = array();
     protected $_cache_groups = array();
 
     public function __construct() {

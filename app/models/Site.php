@@ -50,6 +50,17 @@ class Site extends CI_Model
         return FALSE;
     }
 
+    public function getAllCustomer1() {
+        $q = $this->db->get('paste_marketing_customer');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
     public function getAllSuppliers() {
         $q = $this->db->get('suppliers');
         if ($q->num_rows() > 0) {
