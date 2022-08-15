@@ -19,7 +19,7 @@
                 <div class="box-header card-header">
                     <h6 class="box-title card-title"><?= lang('users'); ?></h6>
                 </div>
-                <div class="box-body card-body">
+                <div class="box-body card-body" style="font-size:12px;">
                     <table id="UTable" class="table table-bordered table-striped table-hover">
                         <thead class="cf">
                         <tr>

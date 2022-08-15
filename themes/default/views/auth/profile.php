@@ -6,7 +6,7 @@
             <div class="nav-tabs-custom card">
                 <div class="card-header">
                     <div style="float: left;" class="ms-md-auto pe-md-12 d-flex align-items-center">
-                        <h6 class="box-title card-title"><?= lang('users'); ?></h6>
+                        <h6 class="box-title card-title"><?= lang('profile'); ?></h6>
                     </div>
                     <div style="float: left;" class="ms-md-auto pe-md-12 d-flex align-items-center">
                         <h6 class="box-title card-title text-white"><?= lang('users'); ?><?= lang('users'); ?><?= lang('users'); ?></h6>
