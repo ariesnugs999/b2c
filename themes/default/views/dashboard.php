@@ -37,7 +37,7 @@
         <div class="col-xs-12">
             <div class="box box-primary card">
                 <div class="box-header card-header">
-                    <h3 class="box-title card-title"><?= lang('Invoices'); ?></h3>
+                    <h6 class="box-title card-title"><?= lang('Receivable (Hutang)'); ?></h6>
                 </div>
                 <div class="box-body card-body">
                     <div class="table-responsive py-4" style="font-size:12px;">
@@ -70,13 +70,13 @@
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->invoice_date . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_no . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_date . '</td>';
-                                echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->due_date . '</td>';
+                                echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->date("d M Y", strtotime(due_date)) . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->top . '</td>';
 
                                 $cek = $vi->cek;
                                 if ($cek == 'SI'){
                                     $debit = $vi->debit;
-                                    $credit = '';
+                                    $credit = 0;
                                     if ($vi->due_date > 0){
                                         $dateDue = date('d-M-Y',strtotime($vi->due_date));
                                         // $overDue = (strtotime($toDay) - strtotime($dtRB['due_date']))/(3600*24);
@@ -91,9 +91,9 @@
                                         $status = 'SOLVED';
                                         $overDue = 0;
                                     }
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $debit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $credit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $saldo . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $debit . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $credit . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $saldo . '</td>';
                                     echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $status . '</td>';
 
                                 } elseif($cek == 'SR'){
@@ -102,9 +102,9 @@
                                     $saldo = $saldo + $debit - $credit;          
                                     $status = '';
 
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $debit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $credit . '</td>';
-                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $saldo . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $debit . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $credit . '</td>';
+                                    echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;" class="text-end">' . $saldo . '</td>';
                                     echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $status . '</td>';
                                 }
                                 echo '</tr>';
