@@ -47,26 +47,13 @@ class Receivable extends MY_Controller
         $this->page_construct('disabled', $this->data, $meta);
     }
 
-    public function signing($req = NULL) {
-        if (!$req) {
-            header("Content-type: text/plain");
-            echo file_get_contents('./files/public.pem');
-            exit(0);
-        } else {
 
-            $privateKey = openssl_get_privatekey(file_get_contents('./files/private.pem'), 'S3cur3P@ssw0rd');
-            $signature = null;
-            openssl_sign($req, $signature, $privateKey);
-
-            if ($signature) {
-                header("Content-type: text/plain");
-                echo base64_encode($signature);
-                exit(0);
-            }
-
-            echo '<h1>Error signing message</h1>';
-            exit(1);
-        }
+    function view($id = NULL) {
+        $data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
+        $sales = $this->site->getSalesByID($id);
+        $this->data['sales'] = $sales;
+        $this->data['invoice'] = $this->site->geInvoiceByID($sales->invoice_no);
+        $this->load->view($this->theme.'receivable/view', $this->data);
     }
 
     function get_invoice() {

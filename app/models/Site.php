@@ -332,4 +332,20 @@ class Site extends CI_Model
         }
     }
 
+    public function getSalesByID($id) {
+        $q = $this->db->get_where('v_so', array('invoice_no' => $id), 1);
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return FALSE;
+    }
+
+    public function geInvoiceByID($id) {
+        $q = $this->db->get_where('paste_finance_invoice_items', array('item_id' => $id), 1);
+        if ($q->num_rows() > 0) {
+            return $q->row();
+        }
+        return FALSE;
+    }
+
 }

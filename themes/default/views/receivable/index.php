@@ -31,6 +31,11 @@
         } );
     } );
 </script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#modal_add_new').modal('show');
+    });
+</script>
 
 <section class="content">
     <div class="row">
@@ -38,7 +43,7 @@
             <div class="box box-primary card">
                 <div class="box-header card-header">
                     <h6 class="box-title card-title"><?= lang('Receivable (Hutang)'); ?></h6>
-                    <h7 class="box-tittle card-title"><?= $this->session->username; ?>-<?= $this->session->account_customer; ?></h7>
+                    <h7 class="box-tittle card-title"><?= $this->session->account_customer; ?> - GOPPAR</h7>
                 </div>
                 <div class="box-body card-body">
                     <div class="table-responsive py-4" style="font-size:12px;">
@@ -69,7 +74,9 @@
                             $totCredit = 0;
                             foreach ($view_invoice as $vi) {
                                 echo '<tr>';
-                                echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->invoice_no . '</td>';
+                                echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">
+                                        <a data-toggle="modal" data-target="#modal_add_new">' . $vi->invoice_no . '</a>
+                                    </td>';
                                 echo '<td class="text-center" style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . tgl_indo2($vi->invoice_date) . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_no . '</td>';
                                 echo '<td class="text-center" style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . tgl_indo2($vi->finance_receipt_date) . '</td>';
@@ -156,3 +163,60 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="modal_add_new" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">Detail Invoice - <?php $vi->invoice_no ?></h3>
+            </div>
+            <form class="form-horizontal" method="post" action="#">
+                <div class="modal-body">
+
+                    <!-- <div class="form-group">
+                        <label class="control-label col-xs-3" >Kode Barang</label>
+                        <div class="col-xs-8">
+                            <input name="kode_barang" class="form-control" type="text" placeholder="Kode Barang..." required>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="form-group">
+                        <label class="control-label col-xs-3" >Nama Barang</label>
+                        <div class="col-xs-8">
+                            <input name="nama_barang" class="form-control" type="text" placeholder="Nama Barang..." required>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="form-group">
+                        <label class="control-label col-xs-3" >Satuan</label>
+                        <div class="col-xs-8">
+                             <select name="satuan" class="form-control" required>
+                                <option value="">-PILIH-</option>
+                                <option value="Unit">Unit</option>
+                                <option value="Kotak">Kotak</option>
+                                <option value="Botol">Botol</option>
+                                <option value="Sachet">Sachet</option>
+                                <option value="Pcs">Pcs</option>
+                                <option value="Dus">Dus</option>
+                             </select>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="form-group">
+                        <label class="control-label col-xs-3" >Harga</label>
+                        <div class="col-xs-8">
+                            <input name="harga" class="form-control" type="text" placeholder="Harga..." required>
+                        </div>
+                    </div> -->
+
+                </div>
+
+                <!-- <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info">Simpan</button>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</div>
