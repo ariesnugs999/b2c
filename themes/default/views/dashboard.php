@@ -41,7 +41,7 @@
                 </div>
                 <div class="box-body card-body">
                     <div class="table-responsive py-4" style="font-size:12px;">
-                        <table id="ITable" class="table align-items-center table-dark">
+                        <!-- <table id="ITable" class="table align-items-center table-dark">
                             <thead class="cf">
                             <tr>
                                 <th><?php echo lang('Invoice No.'); ?></th>
@@ -112,7 +112,7 @@
                             }
                             ?>
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
             </div>
