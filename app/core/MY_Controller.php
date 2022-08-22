@@ -6,17 +6,16 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
 
         $this->Settings = $this->site->getSettings();
-        if($portal_language = $this->input->cookie('portal_language', TRUE)) {
-            $this->Settings->selected_language = $portal_language;
-            $this->config->set_item('language', $portal_language);
-            $this->lang->load('app', $portal_language);
+        if($spos_language = $this->input->cookie('spos_language', TRUE)) {
+            $this->Settings->selected_language = $spos_language;
+            $this->config->set_item('language', $spos_language);
+            $this->lang->load('app', $spos_language);
         } else {
             $this->Settings->selected_language = $this->Settings->language;
             $this->config->set_item('language', $this->Settings->language);
             $this->lang->load('app', $this->Settings->language);
         }
-       
-        $this->theme = $this->Settings->theme.'/views/';
+        $this->Settings->pin_code = $this->Settings->pin_code ? md5($this->Settings->pin_code) : NULL;
         $this->theme = $this->Settings->theme.'/views/';
         $this->data['assets'] = base_url() . 'themes/default/assets/';
         $this->data['Settings'] = $this->Settings;
@@ -43,24 +42,8 @@ class MY_Controller extends CI_Controller {
         $meta['Settings'] = $data['Settings'];
         $meta['assets'] = $data['assets'];
         $meta['store'] = $data['store'];
-     
-        $this->load->view($this->theme . 'header', $meta);
-        $this->load->view($this->theme . $page, $data);
-        $this->load->view($this->theme . 'footer');
-    }
-
-    function page_construct_front($page, $data = array(), $meta = array()) {
-        if(empty($meta)) { $meta['page_title'] = $data['page_title']; }
-        $meta['message'] = isset($data['message']) ? $data['message'] : $this->session->flashdata('message');
-        $meta['error'] = isset($data['error']) ? $data['error'] : $this->session->flashdata('error');
-        $meta['warning'] = isset($data['warning']) ? $data['warning'] : $this->session->flashdata('warning');
-        $meta['ip_address'] = $this->input->ip_address();
-        $meta['Admin'] = $data['Admin'];
-        $meta['loggedIn'] = $data['loggedIn'];
-        $meta['Settings'] = $data['Settings'];
-        $meta['assets'] = $data['assets'];
-        $meta['store'] = $data['store'];
-     
+        $meta['suspended_sales'] = $this->site->getUserSuspenedSales();
+        $meta['qty_alert_num'] = $this->site->getQtyAlerts();
         $this->load->view($this->theme . 'header', $meta);
         $this->load->view($this->theme . $page, $data);
         $this->load->view($this->theme . 'footer');

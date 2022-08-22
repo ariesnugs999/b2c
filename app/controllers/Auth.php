@@ -51,7 +51,6 @@ class Auth extends MY_Controller {
 
         $user = $this->ion_auth->user($id)->row();
         $groups = $this->ion_auth->groups()->result_array();
-       
         $this->data['csrf'] = $this->_get_csrf_nonce();
         $this->data['user'] = $user;
         $this->data['groups'] = $groups;
@@ -101,7 +100,6 @@ class Auth extends MY_Controller {
 
         $this->data['id'] = $id;
         $this->data['stores'] = $this->site->getAllStores();
-        $this->data['customer1'] = $this->site->getAllCustomer1();
         $this->data['page_title'] = lang('profile');
         $bc = array(array('link' => site_url('users'), 'page' => lang('users')), array('link' => '#', 'page' => lang('profile')));
         $meta = array('page_title' => lang('profile'), 'bc' => $bc);
@@ -124,7 +122,13 @@ class Auth extends MY_Controller {
         }
     }
 
-//log the user in
+    public function main()
+    {
+        $this->data['page_title'] = lang('WMP');
+        $this->load->view($this->theme.'auth/before_login', $this->data);
+    }
+
+    //log the user in
     function login($m = NULL) {
         if (!$m) { $m = $this->input->get('m'); }
 
@@ -145,7 +149,7 @@ class Auth extends MY_Controller {
                 }
 
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect('home');
+                redirect($this->session->userdata('store_id') ? 'pos' : 'welcome');
             } else {
                 $this->session->set_flashdata('error', $this->ion_auth->errors());
                 sleep(2);
@@ -424,8 +428,6 @@ class Auth extends MY_Controller {
                 'gender' => $this->input->post('gender'),
                 'store_id' => $this->input->post('group') == 1 ? NULL : $this->input->post('store_id'),
                 'group_id' => $this->input->post('group') ? $this->input->post('group') : '2',
-                'account_id' => $this->input->post('account_id') ? $this->input->post('account_id') : '2',
-                'account_customer' => $this->input->post('account_customer'),
                 );
             $active = $this->input->post('status');
 
@@ -439,7 +441,6 @@ class Auth extends MY_Controller {
             $this->data['error'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('error')));
             $this->data['groups'] = $this->ion_auth->groups()->result_array();
             $this->data['stores'] = $this->site->getAllStores();
-            $this->data['customer'] = $this->site->getAllCustomer1();
             $this->data['page_title'] = lang('add_user');
             $bc = array(array('link' => site_url('users'), 'page' => lang('users')), array('link' => '#', 'page' => lang('add_user')));
             $meta = array('page_title' => lang('add_user'), 'bc' => $bc);
@@ -490,8 +491,6 @@ class Auth extends MY_Controller {
                         'gender' => $this->input->post('gender'),
                         'active' => $this->input->post('status'),
                         'group_id' => $this->input->post('group'),
-                        // 'account_id' => $this->input->post('account_id'),
-                        'account_customer' => $this->input->post('customer_account'),
                         'store_id' => $this->input->post('group') == 1 ? NULL : $this->input->post('store_id'),
                         );
                 }

@@ -1,304 +1,362 @@
-<!--
-=========================================================
-* Argon Dashboard 2 - v2.0.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-<!DOCTYPE html>
-<html lang="en">
-
+<?php (defined('BASEPATH')) OR exit('No direct script access allowed'); ?><!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/favicon.png'); ?>">
-  <title>
-    Portal B2B Widodo Makmur Perkasa
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="<?= $assets ?>css/nucleo-icons.css" rel="stylesheet">
-  <link href="<?= $assets ?>css/nucleo-svg.css" rel="stylesheet">
-  <!-- <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" /> -->
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <!-- <link href="../assets/css/nucleo-svg.css" rel="stylesheet" /> -->
-  <link href="<?= $assets ?>css/nucleo-svg.css" rel="stylesheet">
-  <!-- CSS Files -->
-  <!-- <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" /> -->
-  <link id="pagestyle" href="<?= $assets ?>css/argon-dashboard.css?v=2.0.4'); ?>" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?= $assets ?>DataTables/DataTables-1.12.1/css/dataTables.bootstrap4.min.css"/>
+    <meta charset="UTF-8">
+    <title><?= $page_title.' | '.$Settings->site_name; ?></title>
+    <link rel="shortcut icon" href="<?= $assets ?>images/icon.png"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="<?= $assets ?>dist/css/styles.css" rel="stylesheet" type="text/css" />
+    <?= $Settings->rtl ? '<link href="'.$assets.'dist/css/rtl.css" rel="stylesheet" />' : ''; ?>
+    <script src="<?= $assets ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
 </head>
+<body class="skin-<?= $Settings->theme_style; ?> fixed sidebar-mini">
+<div class="wrapper rtl rtl-inv">
 
-<body class="g-sidenav-show   bg-gray-100">
-<div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-        <span class="mask bg-primary opacity-6"></span>
-    </div>
-
-
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <img src="<?= base_url('uploads/'.$store->logo); ?>" alt="main_logo">
-        <span class="ms-1 font-weight-bold"><?= $store->name; ?></span>
-      </a>
-    </div>
-    <hr class="horizontal dark mt-0">
-
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-            <!-- <li class="user-header">
-                <img src="<?= base_url('./../assets/adminlte/dist/img/avatar5.png');?>" class="img-circle" alt="User Image">
-                <p>
-                  <?= $this->session->nama;?>
-                </p>
-              </li> -->
-
-        <li class="nav-item">
-          <a class="nav-link active" href="<?= site_url('home'); ?>">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-
-        <!-- <li class="nav-item">
-          <a class="nav-link " href="../pages/tables.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Purchases</span>
-          </a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link " href="<?= site_url('sales'); ?>">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Sales</span>
-          </a>
-        </li> -->
-
-        <li class="nav-item">
-          <a class="nav-link" href="<?= site_url('receivable'); ?>">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-box-2 text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Receivable</span>
-          </a>
-        </li>
-
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url(); ?>users/">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Users</span>
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url(); ?>users/profile/<?php echo $this->session->user_id; ?>">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-badge text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1"><?= lang('profile'); ?></span>
-          </a>
-        </li>
-
-        <!-- <li class="nav-item">
-          <a class="nav-link " href="../pages/virtual-reality.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-app text-info text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/rtl.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">RTL</span>
-          </a>
-        </li> -->
-        <!-- <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/profile.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link " href="../pages/sign-in.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Sign In</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/sign-up.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-collection text-info text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
-          </a>
-        </li> -->
-      </ul>
-    </div>
-
-    <!-- <div class="sidenav-footer mx-3 "> -->
-      <!-- <div class="card card-plain shadow-none" id="sidenavCard">
-        <img class="w-50 mx-auto" src=" <?php echo base_url('assets/img/illustrations/icon-documentation.svg'); ?>" alt="sidebar_illustration">
-        <div class="card-body text-center p-3 w-100 pt-0">
-          <div class="docs-info">
-            <h6 class="mb-0">Need help?</h6>
-            <p class="text-xs font-weight-bold mb-0">Please check our docs</p>
-          </div>
-        </div>
-      </div> -->
-      <!-- <a href="" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a> -->
-      <!-- <a class="btn btn-primary btn-sm mb-0 w-100" href="" type="button">Upgrade to pro</a> -->
-    <!-- </div> -->
-    
-  </aside>
-
-
-  <main class="main-content position-relative border-radius-lg ">
-      <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
-        <div class="container-fluid py-1 px-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-             
-              <li class="breadcrumb-item text-sm text-white active" aria-current="page"><h5 class="font-weight-bolder text-white mb-0">PT. Pasir Tengah <small style="font-size: 0.675em;">Induk Management System</small></h5></li>
-            </ol>
-            <!-- <h6 class="font-weight-bolder text-white mb-0"><?= $this->session->username; ?></h6> -->
-            
-          </nav>
-          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-              <!-- <div class="input-group">
-                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="Type here...">
-              </div> -->
-            </div>
-            <ul class="navbar-nav  justify-content-end">
-              <li class="nav-item d-flex align-items-center">
-                <a href="<?php echo base_url(); ?>users/profile/<?php echo $this->session->user_id; ?>" class="nav-link text-white font-weight-bold px-0">
-                  <i class="fa fa-user me-sm-1"></i>
-                  <span class="d-sm-inline d-none"><?= $this->session->username; ?></span>
-                </a>
-              </li>
-              <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                  <div class="sidenav-toggler-inner">
-                    <i class="sidenav-toggler-line bg-white"></i>
-                    <i class="sidenav-toggler-line bg-white"></i>
-                    <i class="sidenav-toggler-line bg-white"></i>
-                  </div>
-                </a>
-              </li>
-              <!-- <li class="nav-item px-3 d-flex align-items-center">
-                <a href="javascript:;" class="nav-link text-white p-0">
-                  <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                </a>
-              </li> -->
-              <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-bell cursor-pointer"></i>
-                </a>
-                <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                  <li class="mb-2">
-                    <a class="dropdown-item border-radius-md" href="javascript:;">
-                      <div class="d-flex py-1">
-                        <div class="my-auto">
-                          <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold">New message</span> from Laur
-                          </h6>
-                          <p class="text-xs text-secondary mb-0">
-                            <i class="fa fa-clock me-1"></i>
-                            13 minutes ago
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li class="mb-2">
-                    <a class="dropdown-item border-radius-md" href="javascript:;">
-                      <div class="d-flex py-1">
-                        <div class="my-auto">
-                          <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="text-sm font-weight-normal mb-1">
-                            <span class="font-weight-bold">New album</span> by Travis Scott
-                          </h6>
-                          <p class="text-xs text-secondary mb-0">
-                            <i class="fa fa-clock me-1"></i>
-                            1 day
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item border-radius-md" href="javascript:;">
-                      <div class="d-flex py-1">
-                        <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                          <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>credit-card</title>
-                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                              <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                <g transform="translate(1716.000000, 291.000000)">
-                                  <g transform="translate(453.000000, 454.000000)">
-                                    <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                    <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                                  </g>
-                                </g>
-                              </g>
-                            </g>
-                          </svg>
-                        </div>
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="text-sm font-weight-normal mb-1">
-                            Payment successfully completed
-                          </h6>
-                          <p class="text-xs text-secondary mb-0">
-                            <i class="fa fa-clock me-1"></i>
-                            2 days
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </li> -->
+    <header class="main-header">
+        <a href="<?= site_url(); ?>" class="logo">
+            <?php if ($store) { ?>
+            <span class="logo-mini"><?= $store->code; ?></span>
+            <span class="logo-lg"><?= $store->name == 'KhanzaPOS' ? 'Simple<b>POS</b>' : $store->name; ?></span>
+            <?php } else { ?>
+            <span class="logo-mini">POS</span>
+            <span class="logo-lg"><?= $Settings->site_name == 'KhanzaPOS' ? 'Simple<b>POS</b>' : $Settings->site_name; ?></span>
+            <?php } ?>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <ul class="nav navbar-nav pull-left">
+                <li class="dropdown hidden-xs">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?= $assets; ?>images/<?= $Settings->selected_language; ?>.png" alt="<?= $Settings->selected_language; ?>"></a>
+                    <ul class="dropdown-menu">
+                        <?php $scanned_lang_dir = array_map(function ($path) {
+                            return basename($path);
+                        }, glob(APPPATH . 'language/*', GLOB_ONLYDIR));
+                        foreach ($scanned_lang_dir as $entry) { ?>
+                            <li><a href="<?= site_url('pos/language/' . $entry); ?>"><img
+                                        src="<?= $assets; ?>images/<?= $entry; ?>.png"
+                                        class="language-img"> &nbsp;&nbsp;<?= ucwords($entry); ?></a></li>
+                        <?php } ?>
+                    </ul>
+                </li>
+                <?php if ($Settings->multi_store && !$this->session->userdata('has_store_id') && $this->session->userdata('store_id')) { ?>
+                <li>
+                    <a href="<?= site_url('stores/deselect_store'); ?>" data-toggle="tooltip" data-placement="right" title="<?= lang('deselect_store'); ?>"><i class="fa fa-square"></i></a>
+                </li>
+                <?php } ?>
             </ul>
-          </div>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="hidden-xs hidden-sm"><a href="#" class="clock"></a></li>
+                    <li class="hidden-xs"><a href="<?= site_url(); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('dashboard'); ?>"><i class="fa fa-dashboard"></i></a></li>
+                    <?php if ($Admin) { ?>
+                    <li class="hidden-xs"><a href="<?= site_url('settings'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('settings'); ?>"><i class="fa fa-cogs"></i></a></li>
+                    <?php } ?>
+                    <?php if ($this->db->dbdriver != 'sqlite3') { ?>
+                    <li><a href="<?= site_url('pos/view_bill'); ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= lang('view_bill'); ?>"><i class="fa fa-desktop"></i></a></li>
+                    <?php } ?>
+                    <li><a href="<?= site_url('pos'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('pos'); ?>"><i class="fa fa-th"></i></a></li>
+                    <?php if ($Admin && $qty_alert_num && $this->session->userdata('store_id')) { ?>
+                    <li>
+                        <a href="<?= site_url('reports/alerts'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('alerts'); ?>">
+                            <i class="fa fa-bullhorn"></i>
+                            <span class="label label-warning"><?= $qty_alert_num; ?></span>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if ($suspended_sales && $this->session->userdata('store_id')) { ?>
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning"><?=sizeof($suspended_sales);?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header"><?=lang('recent_suspended_sales');?></li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                    <?php
+                                    foreach ($suspended_sales as $ss) {
+                                        echo '<a href="'.site_url('pos/?hold='.$ss->id).'" class="load_suspended">'.$this->tec->hrld($ss->date).' ('.$ss->customer_name.')<br><strong>'.$ss->hold_ref.'</strong></a>';
+                                    }
+                                    ?>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="<?= site_url('sales/opened'); ?>"><?= lang('view_all'); ?></a></li>
+                        </ul>
+                    </li>
+                    <?php } ?>
+                    <li class="dropdown user user-menu" style="padding-right:5px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="<?= base_url('uploads/avatars/thumbs/'.($this->session->userdata('avatar') ? $this->session->userdata('avatar') : $this->session->userdata('gender').'.png')) ?>" class="user-image" alt="Avatar" />
+                            <span class="hidden-xs"><?= $this->session->userdata('first_name').' '.$this->session->userdata('last_name'); ?></span>
+                        </a>
+                        <ul class="dropdown-menu" style="padding-right:3px;">
+                            <li class="user-header">
+                                <img src="<?= base_url('uploads/avatars/'.($this->session->userdata('avatar') ? $this->session->userdata('avatar') : $this->session->userdata('gender').'.png')) ?>" class="img-circle" alt="Avatar" />
+                                <p>
+                                    <?= $this->session->userdata('email'); ?>
+                                    <small><?= lang('member_since').' '.$this->session->userdata('created_on'); ?></small>
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="<?= site_url('users/profile/'.$this->session->userdata('user_id')); ?>" class="btn btn-default btn-flat"><?= lang('profile'); ?></a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="<?= site_url('logout'); ?>" class="btn btn-default btn-flat<?= $this->session->userdata('register_id') ? ' sign_out' : ''; ?>"><?= lang('sign_out'); ?></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <ul class="sidebar-menu">
+                <!-- <li class="header"><?= lang('mian_navigation'); ?></li> -->
+
+                <li class="mm_welcome"><a href="<?= site_url(); ?>"><i class="fa fa-dashboard"></i> <span><?= lang('dashboard'); ?></span></a></li>
+                <?php if ($Settings->multi_store && !$this->session->userdata('store_id')) { ?>
+                <li class="mm_stores"><a href="<?= site_url('stores'); ?>"><i class="fa fa-building-o"></i> <span><?= lang('stores'); ?></span></a></li>
+                <?php } ?>
+                <li class="mm_pos"><a href="<?= site_url('pos'); ?>"><i class="fa fa-th"></i> <span><?= lang('pos'); ?></span></a></li>
+
+                <?php if ($Admin) { ?>
+                <li class="treeview mm_products">
+                    <a href="#">
+                        <i class="fa fa-barcode"></i>
+                        <span><?= lang('products'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="products_index"><a href="<?= site_url('products'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_products'); ?></a></li>
+                        <li id="products_add"><a href="<?= site_url('products/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_product'); ?></a></li>
+                        <li id="products_import"><a href="<?= site_url('products/import'); ?>"><i class="fa fa-circle-o"></i> <?= lang('import_products'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="products_print_barcodes"><a href="<?= site_url('products/print_barcodes'); ?>" data-toggle="ajax"><i class="fa fa-circle-o"></i> <?= lang('print_barcodes'); ?></a></li>
+                        <li id="products_print_labels"><a href="<?= site_url('products/print_labels'); ?>" data-toggle="ajax"><i class="fa fa-circle-o"></i> <?= lang('print_labels'); ?></a></li>
+                    </ul>
+                </li>
+                <li class="treeview mm_categories">
+                    <a href="#">
+                        <i class="fa fa-folder"></i>
+                        <span><?= lang('categories'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="categories_index"><a href="<?= site_url('categories'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_categories'); ?></a></li>
+                        <li id="categories_add"><a href="<?= site_url('categories/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_category'); ?></a></li>
+                        <li id="categories_import"><a href="<?= site_url('categories/import'); ?>"><i class="fa fa-circle-o"></i> <?= lang('import_categories'); ?></a></li>
+                    </ul>
+                </li>
+                <?php if ($this->session->userdata('store_id')) { ?>
+                <li class="treeview mm_sales">
+                    <a href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span><?= lang('sales'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="sales_index"><a href="<?= site_url('sales'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_sales'); ?></a></li>
+                        <li id="sales_opened"><a href="<?= site_url('sales/opened'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_opened_bills'); ?></a></li>
+                        <li id="sales_receivable"><a href="<?= site_url('sales/receivable'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_receivable'); ?></a></li>
+                    </ul>
+                </li>
+                <li class="treeview mm_purchases">
+                    <a href="#">
+                        <i class="fa fa-plus"></i>
+                        <span><?= lang('purchases'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="purchases_index"><a href="<?= site_url('purchases'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_purchases'); ?></a></li>
+                        <li id="purchases_add"><a href="<?= site_url('purchases/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_purchase'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="purchases_expenses"><a href="<?= site_url('purchases/expenses'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_expenses'); ?></a></li>
+                        <li id="purchases_add_expense"><a href="<?= site_url('purchases/add_expense'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_expense'); ?></a></li>
+                    </ul>
+                </li>
+                <?php } ?>
+                <!-- <li class="treeview mm_gift_cards">
+                    <a href="#">
+                        <i class="fa fa-credit-card"></i>
+                        <span><?= lang('gift_cards'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="gift_cards_index"><a href="<?= site_url('gift_cards'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_gift_cards'); ?></a></li>
+                        <li id="gift_cards_add"><a href="<?= site_url('gift_cards/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_gift_card'); ?></a></li>
+                    </ul>
+                </li> -->
+
+                <li class="treeview mm_auth mm_customers mm_suppliers">
+                    <a href="#">
+                        <i class="fa fa-users"></i>
+                        <span><?= lang('people'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="auth_users"><a href="<?= site_url('users'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_users'); ?></a></li>
+                        <li id="auth_add"><a href="<?= site_url('users/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_user'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="customers_index"><a href="<?= site_url('customers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_customers'); ?></a></li>
+                        <li id="customers_add"><a href="<?= site_url('customers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_customer'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="suppliers_index"><a href="<?= site_url('suppliers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_suppliers'); ?></a></li>
+                        <li id="suppliers_add"><a href="<?= site_url('suppliers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_supplier'); ?></a></li>
+                    </ul>
+                </li>
+                <li class="treeview mm_reports">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span><?= lang('reports'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="reports_products"><a href="<?= site_url('reports/products'); ?>"><i class="fa fa-circle-o"></i> <?= lang('products_report'); ?></a></li>
+                        <li id="reports_profitProducts"><a href="<?= site_url('reports/profitProducts'); ?>"><i class="fa fa-circle-o"></i> <?= lang('product_profit_report'); ?></a></li>
+                        <li id="reports_purchase_report"><a href="<?= site_url('reports/purchase_report'); ?>"><i class="fa fa-circle-o"></i> <?= lang('purchase_report'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="reports_daily_sales"><a href="<?= site_url('reports/daily_sales'); ?>"><i class="fa fa-circle-o"></i> <?= lang('daily_sales'); ?></a></li>
+                        <li id="reports_monthly_sales"><a href="<?= site_url('reports/monthly_sales'); ?>"><i class="fa fa-circle-o"></i> <?= lang('monthly_sales'); ?></a></li>
+                        <li id="reports_index"><a href="<?= site_url('reports'); ?>"><i class="fa fa-circle-o"></i> <?= lang('sales_report'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="reports_payments"><a href="<?= site_url('reports/payments'); ?>"><i class="fa fa-circle-o"></i> <?= lang('payments_report'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="reports_registers"><a href="<?= site_url('reports/registers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('registers_report'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="reports_top_products"><a href="<?= site_url('reports/top_products'); ?>"><i class="fa fa-circle-o"></i> <?= lang('top_products'); ?></a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview mm_settings">
+                    <a href="#">
+                        <i class="fa fa-cogs"></i>
+                        <span><?= lang('settings'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="settings_index"><a href="<?= site_url('settings'); ?>"><i class="fa fa-circle-o"></i> <?= lang('settings'); ?></a></li>
+                        <li class="divider"></li>
+                        <li id="settings_stores"><a href="<?= site_url('settings/stores'); ?>"><i class="fa fa-circle-o"></i> <?= lang('stores'); ?></a></li>
+                        <?php if ($Settings->multi_store) { ?>
+                        <li id="settings_add_store"><a href="<?= site_url('settings/add_store'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_store'); ?></a></li>
+                        <li class="divider"></li>
+                        <?php } ?>
+                        <li id="settings_printers"><a href="<?= site_url('settings/printers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('printers'); ?></a></li>
+                        <li id="settings_add_printer"><a href="<?= site_url('settings/add_printer'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_printer'); ?></a></li>
+                        <li class="divider"></li>
+                        <?php if ($this->db->dbdriver != 'sqlite3') { ?>
+                        <li id="settings_backups"><a href="<?= site_url('settings/backups'); ?>"><i class="fa fa-circle-o"></i> <?= lang('backups'); ?></a></li>
+                        <?php } ?>
+                        <!-- <li id="settings_updates"><a href="<?= site_url('settings/updates'); ?>"><i class="fa fa-circle-o"></i> <?= lang('updates'); ?></a></li> -->
+                    </ul>
+                </li>
+                <?php } else { ?>
+                <li class="mm_products"><a href="<?= site_url('products'); ?>"><i class="fa fa-barcode"></i> <span><?= lang('products'); ?></span></a></li>
+                <li class="mm_categories"><a href="<?= site_url('categories'); ?>"><i class="fa fa-folder-open"></i> <span><?= lang('categories'); ?></span></a></li>
+                <?php if ($this->session->userdata('store_id')) { ?>
+                <li class="treeview mm_sales">
+                    <a href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span><?= lang('sales'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="sales_index"><a href="<?= site_url('sales'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_sales'); ?></a></li>
+                        <li id="sales_opened"><a href="<?= site_url('sales/opened'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_opened_bills'); ?></a></li>
+                        <li id="sales_receivable"><a href="<?= site_url('sales/receivable'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_receivable'); ?></a></li>
+                    </ul>
+                </li>
+                <li class="treeview mm_purchases">
+                    <a href="#">
+                        <i class="fa fa-plus"></i>
+                        <span><?= lang('expenses'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="purchases_expenses"><a href="<?= site_url('purchases/expenses'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_expenses'); ?></a></li>
+                        <li id="purchases_add_expense"><a href="<?= site_url('purchases/add_expense'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_expense'); ?></a></li>
+                    </ul>
+                </li>
+                <?php } ?>
+                <li class="treeview mm_gift_cards">
+                    <a href="#">
+                        <i class="fa fa-credit-card"></i>
+                        <span><?= lang('gift_cards'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="gift_cards_index"><a href="<?= site_url('gift_cards'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_gift_cards'); ?></a></li>
+                        <li id="gift_cards_add"><a href="<?= site_url('gift_cards/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_gift_card'); ?></a></li>
+                    </ul>
+                </li>
+                <li class="treeview mm_customers">
+                    <a href="#">
+                        <i class="fa fa-users"></i>
+                        <span><?= lang('customers'); ?></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="customers_index"><a href="<?= site_url('customers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_customers'); ?></a></li>
+                        <li id="customers_add"><a href="<?= site_url('customers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_customer'); ?></a></li>
+                    </ul>
+                </li>
+                <?php } ?>
+            </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1><?= $page_title; ?></h1>
+            <ol class="breadcrumb">
+                <li><a href="<?= site_url(); ?>"><i class="fa fa-dashboard"></i> <?= lang('home'); ?></a></li>
+                <?php
+                foreach ($bc as $b) {
+                    if ($b['link'] === '#') {
+                        echo '<li class="active">' . $b['page'] . '</li>';
+                    } else {
+                        echo '<li><a href="' . $b['link'] . '">' . $b['page'] . '</a></li>';
+                    }
+                }
+                ?>
+            </ol>
+        </section>
+
+        <div class="col-lg-12 alerts">
+            <div id="custom-alerts" style="display:none;">
+                <div class="alert alert-dismissable">
+                    <div class="custom-msg"></div>
+                </div>
+            </div>
+            <?php if ($error)  { ?>
+            <div class="alert alert-danger alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <h4><i class="icon fa fa-ban"></i> <?= lang('error'); ?></h4>
+                <?= $error; ?>
+            </div>
+            <?php } if ($warning) { ?>
+            <div class="alert alert-warning alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <h4><i class="icon fa fa-warning"></i> <?= lang('warning'); ?></h4>
+                <?= $warning; ?>
+            </div>
+            <?php } if ($message) { ?>
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <h4>    <i class="icon fa fa-check"></i> <?= lang('Success'); ?></h4>
+                <?= $message; ?>
+            </div>
+            <?php } ?>
         </div>
-      </nav>
-    <div class="container-fluid py-4">   
+        <div class="clearfix"></div>

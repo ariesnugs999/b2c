@@ -22,8 +22,10 @@ class Site extends CI_Model
             $store_id = $this->session->userdata('store_id');
         }
         $jpsq = "( SELECT product_id, quantity, price from {$this->db->dbprefix('product_store_qty')} WHERE store_id = ".($store_id ? $store_id : "''")." ) AS PSQ";
-        $this->db->select("{$this->db->dbprefix('products')}.*, COALESCE(PSQ.quantity, 0) as quantity, unit, COALESCE(PSQ.price, {$this->db->dbprefix('products')}.price) as store_price", FALSE)
-        ->join($jpsq, 'PSQ.product_id=products.id', 'left');
+        $jpi = "( SELECT product_id, COALESCE(SUM(".$this->db->dbprefix('purchase_items').".quantity), 0) AS jml_qty_item, COALESCE(SUM(".$this->db->dbprefix('purchase_items').".subtotal), 0) AS jml_harga_item, (COALESCE(SUM(".$this->db->dbprefix('purchase_items').".subtotal), 0) / COALESCE(SUM(".$this->db->dbprefix('purchase_items').".quantity), 0)) AS avg_purchase_price FROM {$this->db->dbprefix('purchase_items')} GROUP BY ".$this->db->dbprefix('purchase_items').".product_id) AS jpi";
+        $this->db->select("{$this->db->dbprefix('products')}.*, COALESCE(PSQ.quantity, 0) as quantity, unit, COALESCE(PSQ.price, {$this->db->dbprefix('products')}.price) as store_price, avg_purchase_price", FALSE)
+        ->join($jpsq, 'PSQ.product_id=products.id', 'left')
+        ->join($jpi, 'products.id=jpi.product_id', 'left');
         $q = $this->db->get_where('products', array('products.id' => $id), 1);
         if ($q->num_rows() > 0) {
             return $q->row();
@@ -41,17 +43,6 @@ class Site extends CI_Model
 
     public function getAllCustomers() {
         $q = $this->db->get('customers');
-        if ($q->num_rows() > 0) {
-            foreach (($q->result()) as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return FALSE;
-    }
-
-    public function getAllCustomer1() {
-        $q = $this->db->get('paste_marketing_customer');
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
                 $data[] = $row;
@@ -182,11 +173,6 @@ class Site extends CI_Model
         return FALSE;
     }
 
-    public function modal_js()
-    {
-        return '<script type="text/javascript">' . file_get_contents($this->data['assets'] . 'dist/js/modal.js') . '</script>';
-    }
-
     public function getUserGroup($user_id = NULL) {
         if ($group_id = $this->getUserGroupID($user_id)) {
             $q = $this->db->get_where('groups', array('id' => $group_id), 1);
@@ -290,62 +276,21 @@ class Site extends CI_Model
         return FALSE;
     }
 
-
-    function getRomawi($bln){
-        switch ($bln){
-            case 1: 
-                return "I";
-                break;
-            case 2:
-                return "II";
-                break;
-            case 3:
-                return "III";
-                break;
-            case 4:
-                return "IV";
-                break;
-            case 5:
-                return "V";
-                break;
-            case 6:
-                return "VI";
-                break;
-            case 7:
-                return "VII";
-                break;
-            case 8:
-                return "VIII";
-                break;
-            case 9:
-                return "IX";
-                break;
-            case 10:
-                return "X";
-                break;
-            case 11:
-                return "XI";
-                break;
-            case 12:
-                return "XII";
-                break;
-        }
-    }
-
-    public function getSalesByID($id) {
-        $q = $this->db->get_where('v_so', array('invoice_no' => $id), 1);
-        if ($q->num_rows() > 0) {
-            return $q->row();
-        }
-        return FALSE;
-    }
-
-    public function geInvoiceByID($id) {
-        $q = $this->db->get_where('paste_finance_invoice_items', array('item_id' => $id), 1);
-        if ($q->num_rows() > 0) {
-            return $q->row();
-        }
-        return FALSE;
-    }
+    // public function view_barang(){
+    //     return $this->db->query("SELECT pro.id, pro.name, pro.code, sum(pi.subtotal) AS total_pembelian,
+    //         sum(si.quantity) as sold, sum(si.subtotal) as grandtotal, SUM(si.subtotal) as income, psq.quantity as sisa,
+    //         sum(pi.quantity) as purchase,
+    //         ROUND(COALESCE(((sum(si.subtotal) * pro.tax)/100), 0), 2) as tax, 
+    //         coalesce(sum(pi.subtotal) / sum(pi.quantity),0) AS avg_purchase_price, jpsi.tot_profit_items
+    //         FROM tec_products pro
+    //         LEFT join tec_product_store_qty psq ON psq.product_id=pro.id
+    //         LEFT join tec_purchase_items pi ON pi.product_id=psq.product_id
+    //         LEFT join tec_purchases pur ON pur.id=pi.purchase_id
+    //         LEFT join tec_sale_items si ON si.product_id=psq.product_id
+    //         LEFT join tec_sales sal ON sal.id=si.sale_id
+    //         WHERE psq.store_id = 1
+    //         GROUP BY pro.id
+    //         ORDER BY pro.name");
+    // }
 
 }

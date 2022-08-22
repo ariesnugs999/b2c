@@ -15,11 +15,11 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-primary card">
-                <div class="box-header card-header">
-                    <h6 class="box-title card-title"><?= lang('users'); ?></h6>
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title"><?= lang('list_results'); ?></h3>
                 </div>
-                <div class="box-body card-body" style="font-size:12px;">
+                <div class="box-body">
                     <table id="UTable" class="table table-bordered table-striped table-hover">
                         <thead class="cf">
                         <tr>
@@ -42,8 +42,8 @@
                             echo '<td>' . $user->group . '</td>';
                             echo '<td>' . $user->store . '</td>';
                             echo '<td class="text-center" style="padding:6px;">' . ($user->active ? '<span class="label label-success">' . lang('active') . '</span' : '<span class="label label-danger">' . lang('inactive') . '</span>') . '</td>';
-                            echo '<td class="text-center" style="padding:6px;"><div class="btn-group btn-group-justified" role="group"><div class="btn-group btn-group-xs" role="group"><a class="tip btn btn-warning btn-xs" style="margin-bottom: 0;" title="' . lang("profile") . '" href="' . site_url('users/profile/' . $user->id) . '"><i class="fa fa-edit fa-xs"></i></a></div>
-                            <div class="btn-group btn-group-xs" role="group"><a class="tip btn btn-danger btn-xs" style="margin-bottom: 0;" title="' . lang("delete_user") . '" href="' . site_url('auth/delete/' . $user->id) . '" onclick="return confirm(\''.lang('alert_x_user').'\')"><i class="fa fa-trash-o fa-xs"></i></a></div></div></td>';
+                            echo '<td class="text-center" style="padding:6px;"><div class="btn-group btn-group-justified" role="group"><div class="btn-group btn-group-xs" role="group"><a class="tip btn btn-warning btn-xs" title="' . lang("profile") . '" href="' . site_url('users/profile/' . $user->id) . '"><i class="fa fa-edit"></i></a></div>
+                            <div class="btn-group btn-group-xs" role="group"><a class="tip btn btn-danger btn-xs" title="' . lang("delete_user") . '" href="' . site_url('auth/delete/' . $user->id) . '" onclick="return confirm(\''.lang('alert_x_user').'\')"><i class="fa fa-trash-o"></i></a></div></div></td>';
                             echo '</tr>';
                         }
                         ?>

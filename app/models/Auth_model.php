@@ -21,7 +21,6 @@ class Auth_model extends CI_Model {
     protected $error_start_delimiter;
     protected $error_end_delimiter;
     public $_cache_user_in_group = array();
-    public $_cache_user_in_customer = array();
     protected $_cache_groups = array();
 
     public function __construct() {
@@ -552,7 +551,7 @@ class Auth_model extends CI_Model {
         $this->trigger_events('extra_where');
         $this->load->helper('email');
         $this->identity_column = valid_email($identity) ? 'email' : 'username';
-        $query = $this->db->select($this->identity_column . ', username, email, id, password,active, first_name, last_name, created_on, last_login,last_ip_address, avatar, gender, group_id, store_id,account_customer')
+        $query = $this->db->select($this->identity_column . ', username, email, id, password, active, first_name, last_name, created_on, last_login, last_ip_address, avatar, gender, group_id, store_id')
                 ->where($this->identity_column, $this->db->escape_str($identity))
                 ->limit(1)
                 ->get($this->tables['users']);
@@ -1139,7 +1138,6 @@ class Auth_model extends CI_Model {
             'group_id' => $user->group_id,
             'store_id' => $user->store_id,
             'has_store_id' => $user->store_id,
-            'account_customer' => $user->account_customer,
         );
 
         $this->session->set_userdata($session_data);
@@ -1203,7 +1201,7 @@ class Auth_model extends CI_Model {
 
         //get the user
         $this->trigger_events('extra_where');
-        $query = $this->db->select($this->identity_column . ', id, username, email, last_login, last_ip_address, avatar, first_name, last_name, created_on, gender, group_id, store_id,account_customer')
+        $query = $this->db->select($this->identity_column . ', id, username, email, last_login, last_ip_address, avatar, first_name, last_name, created_on, gender, group_id, store_id')
                 ->where($this->identity_column, get_cookie('identity'))
                 ->where('remember_code', get_cookie('remember_code'))
                 ->limit(1)
