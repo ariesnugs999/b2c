@@ -12,8 +12,8 @@
 <body class="skin-<?= $Settings->theme_style; ?> fixed sidebar-mini">
 <div class="wrapper rtl rtl-inv">
 
-    <header class="main-header">
-        <a href="<?= site_url(); ?>" class="logo">
+    <header class="main-header bg-<?= $Settings->theme_style; ?>-cust">
+        <a href="<?= site_url(); ?>" class="logo bg-trans-cust">
             <?php if ($store) { ?>
             <span class="logo-mini"><?= $store->code; ?></span>
             <span class="logo-lg"><?= $store->name == 'KhanzaPOS' ? 'Simple<b>POS</b>' : $store->name; ?></span>
@@ -52,14 +52,14 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li class="hidden-xs hidden-sm"><a href="#" class="clock"></a></li>
-                    <li class="hidden-xs"><a href="<?= site_url(); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('dashboard'); ?>"><i class="fa fa-dashboard"></i></a></li>
+                    <!-- <li class="hidden-xs"><a href="<?= site_url(); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('dashboard'); ?>"><i class="fa fa-dashboard"></i></a></li>
                     <?php if ($Admin) { ?>
                     <li class="hidden-xs"><a href="<?= site_url('settings'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('settings'); ?>"><i class="fa fa-cogs"></i></a></li>
                     <?php } ?>
                     <?php if ($this->db->dbdriver != 'sqlite3') { ?>
                     <li><a href="<?= site_url('pos/view_bill'); ?>" target="_blank" data-toggle="tooltip" data-placement="bottom" title="<?= lang('view_bill'); ?>"><i class="fa fa-desktop"></i></a></li>
                     <?php } ?>
-                    <li><a href="<?= site_url('pos'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('pos'); ?>"><i class="fa fa-th"></i></a></li>
+                    <li><a href="<?= site_url('pos'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('pos'); ?>"><i class="fa fa-th"></i></a></li> -->
                     <?php if ($Admin && $qty_alert_num && $this->session->userdata('store_id')) { ?>
                     <li>
                         <a href="<?= site_url('reports/alerts'); ?>" data-toggle="tooltip" data-placement="bottom" title="<?= lang('alerts'); ?>">
@@ -128,10 +128,10 @@
                 <?php if ($Settings->multi_store && !$this->session->userdata('store_id')) { ?>
                 <li class="mm_stores"><a href="<?= site_url('stores'); ?>"><i class="fa fa-building-o"></i> <span><?= lang('stores'); ?></span></a></li>
                 <?php } ?>
-                <li class="mm_pos"><a href="<?= site_url('pos'); ?>"><i class="fa fa-th"></i> <span><?= lang('pos'); ?></span></a></li>
+                <!-- <li class="mm_pos"><a href="<?= site_url('pos'); ?>"><i class="fa fa-th"></i> <span><?= lang('pos'); ?></span></a></li> -->
 
                 <?php if ($Admin) { ?>
-                <li class="treeview mm_products">
+                <!-- <li class="treeview mm_products">
                     <a href="#">
                         <i class="fa fa-barcode"></i>
                         <span><?= lang('products'); ?></span>
@@ -157,9 +157,9 @@
                         <li id="categories_add"><a href="<?= site_url('categories/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_category'); ?></a></li>
                         <li id="categories_import"><a href="<?= site_url('categories/import'); ?>"><i class="fa fa-circle-o"></i> <?= lang('import_categories'); ?></a></li>
                     </ul>
-                </li>
+                </li> -->
                 <?php if ($this->session->userdata('store_id')) { ?>
-                <li class="treeview mm_sales">
+                <!-- <li class="treeview mm_sales">
                     <a href="#">
                         <i class="fa fa-shopping-cart"></i>
                         <span><?= lang('sales'); ?></span>
@@ -184,7 +184,7 @@
                         <li id="purchases_expenses"><a href="<?= site_url('purchases/expenses'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_expenses'); ?></a></li>
                         <li id="purchases_add_expense"><a href="<?= site_url('purchases/add_expense'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_expense'); ?></a></li>
                     </ul>
-                </li>
+                </li> -->
                 <?php } ?>
                 <!-- <li class="treeview mm_gift_cards">
                     <a href="#">
@@ -195,6 +195,19 @@
                     <ul class="treeview-menu">
                         <li id="gift_cards_index"><a href="<?= site_url('gift_cards'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_gift_cards'); ?></a></li>
                         <li id="gift_cards_add"><a href="<?= site_url('gift_cards/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_gift_card'); ?></a></li>
+                    </ul>
+                </li> -->
+
+                <!-- Sales Receivable -->
+                <li class="mm_receivable"><a href="<?= site_url(); ?>"><i class="fa fa-shopping-cart"></i> <span><?= lang('receivable2'); ?></span></a></li>
+                <!-- <li class="treeview mm_receivable">
+                    <a href="#">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span><?= lang('receivable'); ?> (Hutang)</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="receivable_index"><a href="<?= site_url('receivable'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_receivable'); ?></a></li>
                     </ul>
                 </li> -->
 
@@ -215,7 +228,7 @@
                         <li id="suppliers_add"><a href="<?= site_url('suppliers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_supplier'); ?></a></li>
                     </ul>
                 </li>
-                <li class="treeview mm_reports">
+                <!-- <li class="treeview mm_reports">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
                         <span><?= lang('reports'); ?></span>
@@ -236,7 +249,7 @@
                         <li class="divider"></li>
                         <li id="reports_top_products"><a href="<?= site_url('reports/top_products'); ?>"><i class="fa fa-circle-o"></i> <?= lang('top_products'); ?></a></li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li class="treeview mm_settings">
                     <a href="#">

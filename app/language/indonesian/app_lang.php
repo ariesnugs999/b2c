@@ -833,3 +833,7 @@ $lang['warehouse'] = "Gudang";
 $lang['stock'] = "Stok";
 $lang['stock_report'] = "Laporan Stok";
 $lang['product_profit_report'] = "Laporan Laba Produk";
+
+// Add by Bayu
+$lang['receivable2'] = "Receivable";
+$lang['receivable_debt'] = "Receivable (Hutang)";

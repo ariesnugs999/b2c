@@ -112,12 +112,12 @@ $('#chart2').highcharts({
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-danger">
+            <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title"><?= lang('quick_links'); ?></h3>
                 </div>
                 <div class="box-body">
-                    <!-- <?php if ($this->session->userdata('store_id')) { ?>
+                    <?php if ($this->session->userdata('store_id')) { ?>
                     <a class="btn btn-app" href="<?= site_url('pos'); ?>">
                         <i class="fa fa-th"></i> <?= lang('pos'); ?>
                     </a>
@@ -130,7 +130,7 @@ $('#chart2').highcharts({
                         <i class="fa fa-shopping-cart"></i> <?= lang('sales'); ?>
                     </a>
                     <a class="btn btn-app" href="<?= site_url('sales/opened'); ?>">
-                        <span class="badge bg-yellow"><?=sizeof($suspended_sales);?></span>
+                        <!-- <span class="badge bg-yellow"><?=sizeof($suspended_sales);?></span> -->
                         <i class="fa fa-bell-o"></i> <?= lang('opened_bills'); ?>
                     </a>
                     <?php } ?>
@@ -142,8 +142,8 @@ $('#chart2').highcharts({
                     </a>
                     <a class="btn btn-app" href="<?= site_url('customers'); ?>">
                         <i class="fa fa-users"></i> <?= lang('customers'); ?>
-                    </a> -->
-                    <!-- <?php if ($Admin) { ?>
+                    </a>
+                    <?php if ($Admin) { ?>
                     <a class="btn btn-app" href="<?= site_url('settings'); ?>">
                         <i class="fa fa-cogs"></i> <?= lang('settings'); ?>
                     </a>
@@ -158,14 +158,14 @@ $('#chart2').highcharts({
                         <i class="fa fa-database"></i> <?= lang('backups'); ?>
                     </a>
                     <?php } ?>
-                    <a class="btn btn-app" href="<?= site_url('settings/updates'); ?>">
+                    <!-- <a class="btn btn-app" href="<?= site_url('settings/updates'); ?>">
                         <i class="fa fa-upload"></i> <?= lang('updates'); ?>
-                    </a>
-                    <?php } ?> -->
+                    </a> -->
+                    <?php } ?>
                 </div>
             </div>
 
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-md-8">
                     <div class="box box-primary">
                         <div class="box-header">
@@ -187,7 +187,7 @@ $('#chart2').highcharts({
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
         </div>
     </div>
