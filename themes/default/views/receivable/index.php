@@ -1,45 +1,34 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed'); ?>
 
+<!-- Datatables -->
+<link href="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.css" rel="stylesheet" type="text/css" />
+<link href="<?= $assets ?>plugins/datatables/buttons.dataTables-2.2.3.min.css" rel="stylesheet" type="text/css" />
+    <!-- <script src="<?= $assets ?>plugins/jQuery/jquery-3.5.1.js"></script> -->
+    <script src="<?= $assets ?>plugins/datatables/jquery-1.10.2.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/jquery-1.11.3.min.js"></script>
+    <!-- Datatables -->
+    <script src="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/dataTables.buttons-2.2.3.min.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/jszip-3.1.3.min.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/pdfmake-0.1.53.min.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/vfs_fonts-0.1.53.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/buttons.html5-2.2.3.min.js"></script>
+    <script src="<?= $assets ?>plugins/datatables/buttons.print-2.2.3.min.js"></script>
 <script type="text/javascript">
-    // $(document).ready(function() {
-    //     var table = $('#RTable').DataTable( {
-    //         dom:"Bfrtip",
-    //         bAutoWidth: false,
-    //         // scrollY:        "300px",
-    //         scrollX:        true,
-    //         scrollCollapse: true,
-    //         paging:         true,
-    //         buttons:        [
-    //           {
-    //             extend: 'excel',
-    //             exportOptions: {
-    //                 columns: 'th:not(:last-child)'
-    //             }
-    //           },
-    //           {
-    //             extend: 'pdf',
-    //             exportOptions: {
-    //                 columns: 'th:not(:last-child)'
-    //             }
-    //           }
-    //         ],
-    //         // fixedColumns:   {
-    //         //     leftColumns: 3
-    //         // }
-            
-    //     } );
-    // } );
-</script>
-<script type="text/javascript">
-    $(window).load(function(){
-        $('#modal_add_new').modal('show');
-    });
+    $(document).ready(function() {
+        $('#RTable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        } );
+    } );
 </script>
 
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-primary">
+            <div class="box box-danger">
                 <div class="box-header">
                     <h6 class="box-title card-title"><?= lang('receivable_debt'); ?></h6>
                     <h7 class="box-tittle card-title"><?= $this->session->account_customer; ?> - GOPPAR</h7>
@@ -163,46 +152,6 @@
     </div>
 </section>
 
-<?php if ($Admin) { ?>
-<div class="modal fade" id="stModal" tabindex="-1" role="dialog" aria-labelledby="stModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
-                <h4 class="modal-title" id="stModalLabel"><?= lang('update_status'); ?> <span id="status-id"></span></h4>
-            </div>
-            <?= form_open('sales/status'); ?>
-            <div class="modal-body">
-                <input type="hidden" value="" id="sale_id" name="sale_id" />
-                <div class="form-group">
-                    <?= lang('status', 'status'); ?>
-                    <?php $opts = array('paid' => lang('paid'), 'partial' => lang('partial'), 'unpaid' => lang('unpaid'))  ?>
-                    <?= form_dropdown('status', $opts, set_value('status'), 'class="form-control select2 tip" id="status" required="required" style="width:100%;"'); ?>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close'); ?></button>
-                <button type="submit" class="btn btn-primary"><?= lang('update'); ?></button>
-            </div>
-            <?= form_close(); ?>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).on('click', '.sale_status', function() {
-            var sale_id = $(this).closest('tr').attr('id');
-            var curr_status = $(this).text();
-            var status = curr_status.toLowerCase();
-            $('#status-id').text('( <?= lang('sale_id'); ?> '+sale_id+' )');
-            $('#sale_id').val(sale_id);
-            $('#status').val(status);
-            $('#status').select2('val', status);
-            $('#stModal').modal()
-        });
-    });
-</script>
-<?php } ?>
 <script src="<?= $assets ?>plugins/bootstrap-datetimepicker/js/moment.min.js" type="text/javascript"></script>
 <script src="<?= $assets ?>plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <script type="text/javascript">
