@@ -199,7 +199,7 @@
                 </li> -->
 
                 <!-- Sales Receivable -->
-                <li class="mm_receivable"><a href="<?= site_url(); ?>"><i class="fa fa-shopping-cart"></i> <span><?= lang('receivable2'); ?></span></a></li>
+                <li class="mm_receivable"><a href="<?= site_url('receivable'); ?>"><i class="fa fa-shopping-cart"></i> <span><?= lang('receivable2'); ?></span></a></li>
                 <!-- <li class="treeview mm_receivable">
                     <a href="#">
                         <i class="fa fa-shopping-cart"></i>
