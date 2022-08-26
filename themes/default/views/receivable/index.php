@@ -3,17 +3,17 @@
 <!-- Datatables -->
 <!-- <link href="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.css" rel="stylesheet" type="text/css" /> -->
 <link href="<?= $assets ?>plugins/datatables/buttons.dataTables-2.2.3.min.css" rel="stylesheet" type="text/css" />
-<script src="<?= $assets ?>plugins/jQuery/jquery-3.5.1.js"></script>
+<!-- <script src="<?= $assets ?>plugins/jQuery/jquery-3.5.1.js"></script> -->
 <!-- <script src="<?= $assets ?>plugins/datatables/jquery-1.10.2.js"></script> -->
 <!-- <script src="<?= $assets ?>plugins/datatables/jquery-1.11.3.min.js"></script> -->
 <!-- Datatables -->
-<script src="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.js"></script>
+<!-- <script src="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.js"></script>
 <script src="<?= $assets ?>plugins/datatables/dataTables.buttons-2.2.3.min.js"></script>
 <script src="<?= $assets ?>plugins/datatables/jszip-3.1.3.min.js"></script>
 <script src="<?= $assets ?>plugins/datatables/pdfmake-0.1.53.min.js"></script>
 <script src="<?= $assets ?>plugins/datatables/vfs_fonts-0.1.53.js"></script>
 <script src="<?= $assets ?>plugins/datatables/buttons.html5-2.2.3.min.js"></script>
-<script src="<?= $assets ?>plugins/datatables/buttons.print-2.2.3.min.js"></script>
+<script src="<?= $assets ?>plugins/datatables/buttons.print-2.2.3.min.js"></script> -->
 <script type="text/javascript">
     $(document).ready(function() {
         $('#RTable').DataTable( {
@@ -60,6 +60,7 @@
                             $saldo = 0;
                             $totDebit = 0;
                             $totCredit = 0;
+                            if (is_array($view_invoice) || is_object($view_invoice)) {
                             foreach ($view_invoice as $vi) {
                                 echo '<tr>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">
@@ -141,6 +142,7 @@
                                     echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $status . '</td>';
                                 }
                                 echo '</tr>';
+                            }
                             }
                             ?>
                             </tbody>

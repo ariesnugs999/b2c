@@ -7,9 +7,10 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link href="<?= $assets ?>dist/css/styles.css" rel="stylesheet" type="text/css" />
     <?= $Settings->rtl ? '<link href="'.$assets.'dist/css/rtl.css" rel="stylesheet" />' : ''; ?>
-    <script src="<?= $assets ?>plugins/jQuery/jquery-3.5.1.js"></script>
+    <script src="<?= $assets ?>plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- <script src="<?= $assets ?>plugins/jQuery/jquery-3.5.1.js"></script> -->
     <script src="<?= $assets ?>plugins/datatables/jquery-1.10.2.js"></script>
-    <script src="<?= $assets ?>plugins/datatables/jquery-1.11.3.min.js"></script>
+    <!-- <script src="<?= $assets ?>plugins/datatables/jquery-1.11.3.min.js"></script> -->
     <!-- Datatables -->
     <script src="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.js"></script>
     <script src="<?= $assets ?>plugins/datatables/dataTables.buttons-2.2.3.min.js"></script>

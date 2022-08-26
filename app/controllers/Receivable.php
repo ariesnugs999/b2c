@@ -23,7 +23,7 @@ class Receivable extends MY_Controller {
     function index() {
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['page_title'] = lang('receivable2');
-        $this->data['view_invoice'] = $this->receivable_model->view_invoice();
+        $this->data['view_invoice'] = $this->receivable_model->view_invoice4();
         $bc = array(array('link' => '#', 'page' => lang('receivable2')));
         $meta = array('page_title' => lang('receivable2'), 'bc' => $bc);
         $this->page_construct('receivable/index', $this->data, $meta);
