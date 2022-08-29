@@ -17,6 +17,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#RTable').DataTable( {
+        
             dom: 'Bfrtip',
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
