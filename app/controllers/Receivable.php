@@ -18,7 +18,7 @@ class Receivable extends MY_Controller {
 
         $this->digital_file_types = 'zip|pdf|doc|docx|xls|xlsx|jpg|png|gif';
 
-    }
+    } 
 
     function index() {
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
