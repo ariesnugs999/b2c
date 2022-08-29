@@ -31,7 +31,7 @@
         <div class="col-xs-12">
             <div class="box box-danger">
                 <div class="box-header">
-                    <h6 class="box-title card-title"><?= lang('receivable_debt'); ?></h6>
+                    <h6 class="box-title card-title"><?= lang('receivable_debt'); ?></h6></br>
                     <h7 class="box-tittle card-title"><?= $this->session->userdata('account_customer'); ?> - GOPPAR</h7>
                 </div>
                 <div class="box-body">
