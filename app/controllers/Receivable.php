@@ -75,4 +75,16 @@ class Receivable extends MY_Controller {
         echo $this->datatables->generate();
     }
 
+    function details($id = NULL) {
+        $this->data['details'] = $this->receivable_model->getReceivableDetails($id);
+        $this->load->view($this->theme . 'receivable/details', $this->data);
+    }
+
+    public function ajax_details($id)
+    {
+        $data = $this->receivable_model->get_details_by_id($id);
+        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+        echo json_encode($data);
+    }
+
 }

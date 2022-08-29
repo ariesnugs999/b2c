@@ -64,7 +64,7 @@
                             foreach ($view_invoice as $vi) {
                                 echo '<tr>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">
-                                        <a data-toggle="modal" data-target="#modal_add_new">' . $vi->invoice_no . '</a>
+                                        <a class="btn btn-sm btn-primary" data-toggle="modal" title="Lihat Detail" data-target="#myModal' . $vi->invoice_no .'">' . $vi->invoice_no . '</a>
                                     </td>';
                                 echo '<td class="text-center" style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . tgl_indo2($vi->invoice_date) . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_no . '</td>';
@@ -153,6 +153,42 @@
         </div>
     </div>
 </section>
+
+<!--- MODAL-->
+<?php foreach($view_invoice as $vi){ 
+echo '
+<div class="modal fade" id="myModal' . $vi->invoice_no .'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
+?>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Detail Receivable</h4>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+            
+            <table class="table table-condensed">
+                <tr>
+                    <th class="info" colspan="3">Detail Pesanan yang Harus di kirim</th>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <th>:</th>
+
+                    <td><?= $r->receipt_date ?></td>
+                </tr>
+
+            </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
 
 <script src="<?= $assets ?>plugins/bootstrap-datetimepicker/js/moment.min.js" type="text/javascript"></script>
 <script src="<?= $assets ?>plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
