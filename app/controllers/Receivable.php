@@ -38,12 +38,23 @@ class Receivable extends MY_Controller {
     }
 
     function get_invoice() {
+       
+        $cust_id = $this->session->userdata('account_customer');
         $this->load->library('datatables');
         if ($this->db->dbdriver == 'sqlite3') {
             $this->datatables->select("invoice_no, strftime('%Y-%m-%d', invoice_date) as invoice_date, strftime('%Y-%m-%d', due_date) as due_date, currency, debit, total_debit, top, finance_receipt_no,  strftime('%Y-%m-%d', finance_receipt_date) as finance_receipt_date, bank, credit, total_credit, cek, category");
         } else {
-            $this->datatables->select("invoice_no, DATE_FORMAT(invoice_date, '%Y-%m-%d') as invoice_date, invoice_date, DATE_FORMAT(due_date, '%Y-%m-%d') as due_date, currency, debit, total_debit, top, finance_receipt_no,  DATE_FORMAT(finance_receipt_date, '%Y-%m-%d') as finance_receipt_date, bank, credit, total_credit, cek, category");
+            if (!$this->Admin ) {
+                $this->datatables->select("invoice_no, DATE_FORMAT(invoice_date, '%Y-%m-%d') as invoice_date, invoice_date, DATE_FORMAT(due_date, '%Y-%m-%d') as due_date, currency, debit, total_debit, top, finance_receipt_no,  DATE_FORMAT(finance_receipt_date, '%Y-%m-%d') as finance_receipt_date, bank, credit, total_credit, cek, category");
+                
+            } else{
+                $this->datatables->select("invoice_no, DATE_FORMAT(invoice_date, '%Y-%m-%d') as invoice_date, invoice_date, DATE_FORMAT(due_date, '%Y-%m-%d') as due_date, currency, debit, total_debit, top, finance_receipt_no,  DATE_FORMAT(finance_receipt_date, '%Y-%m-%d') as finance_receipt_date, bank, credit, total_credit, cek, category");
+                $this->datatables->where('account_customer', $this->session->userdata('account_customer'));
+                
+            }
+           
         }
+        $this->datatables->where('status', 'paid');
         $this->datatables->from('v_so');
         // $this->datatables->where('status', 'paid');
         // if (!$this->Admin && !$this->session->userdata('view_right')) {

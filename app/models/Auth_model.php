@@ -551,7 +551,7 @@ class Auth_model extends CI_Model {
         $this->trigger_events('extra_where');
         $this->load->helper('email');
         $this->identity_column = valid_email($identity) ? 'email' : 'username';
-        $query = $this->db->select($this->identity_column . ', username, email, id, password, active, first_name, last_name, created_on, last_login, last_ip_address, avatar, gender, group_id, store_id')
+        $query = $this->db->select($this->identity_column . ', username, email, id, password, active, first_name, last_name, created_on, last_login, last_ip_address, avatar, gender, group_id, store_id,account_customer')
                 ->where($this->identity_column, $this->db->escape_str($identity))
                 ->limit(1)
                 ->get($this->tables['users']);
@@ -1130,6 +1130,7 @@ class Auth_model extends CI_Model {
             'user_id' => $user->id,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
+            'account_customer' => $user->account_customer,
             'created_on' => $this->tec->hrld(date('Y-m-d H:i:s', $user->created_on)),
             'old_last_login' => $user->last_login,
             'last_ip' => $user->last_ip_address,
@@ -1201,7 +1202,7 @@ class Auth_model extends CI_Model {
 
         //get the user
         $this->trigger_events('extra_where');
-        $query = $this->db->select($this->identity_column . ', id, username, email, last_login, last_ip_address, avatar, first_name, last_name, created_on, gender, group_id, store_id')
+        $query = $this->db->select($this->identity_column . ', id, username, email, last_login, last_ip_address, avatar, first_name, last_name, created_on, gender, group_id, store_id,account_customer')
                 ->where($this->identity_column, get_cookie('identity'))
                 ->where('remember_code', get_cookie('remember_code'))
                 ->limit(1)
