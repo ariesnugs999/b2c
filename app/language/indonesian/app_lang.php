@@ -835,5 +835,5 @@ $lang['stock_report'] = "Laporan Stok";
 $lang['product_profit_report'] = "Laporan Laba Produk";
 
 // Add by Bayu
-$lang['receivable2'] = "Receivable";
-$lang['receivable_debt'] = "Receivable (Hutang)";
+$lang['receivable2'] = "Payable";
+$lang['receivable_debt'] = "Payable (Hutang)";
