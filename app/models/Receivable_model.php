@@ -76,4 +76,30 @@ class Receivable_model extends CI_Model
         return $query->row();
     }
 
+    function getDetails($id){
+        $this->db->select('*');
+        $this->db->from('paste_finance_receipt');
+        $this->db->where('receipt_no = ', $id);
+        
+        $q = $this->db->get();
+          if ($q !== FALSE && $q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+      }
+
+    public function getCustomerByID($id) {
+        $q = $this->db->get_where('paste_marketing_customer', array('account' => $id), 1);
+        if ($q !== FALSE && $q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
 }

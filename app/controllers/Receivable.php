@@ -20,14 +20,23 @@ class Receivable extends MY_Controller {
 
     } 
 
-    function index() {
+    function index($id = NULL) {
         $this->data['error'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['page_title'] = lang('receivable2');
         $account_customer = $this->session->userdata('account_customer');
+        // $customer = $this->receivable_model->getCustomerByID($account_customer);
         $this->data['view_invoice'] = $this->receivable_model->view_invoice();
+        $this->data['view_details'] = $this->receivable_model->getDetails($id);
+        // $this->data['customer'] = $customer;
         $bc = array(array('link' => '#', 'page' => lang('receivable2')));
         $meta = array('page_title' => lang('receivable2'), 'bc' => $bc);
         $this->page_construct('receivable/index', $this->data, $meta);
+    }
+    
+    function form_detail_receivable(){
+        $id = $_POST['receipt_no'];
+        $data['details_receivable'] = $this->db->get_where("paste_finance_receipt",array("receipt_no" => $id));
+        $this->load->view("receivable/form_detail_receivable",$data);
     }
 
     function view($id = NULL) {
@@ -75,16 +84,17 @@ class Receivable extends MY_Controller {
         echo $this->datatables->generate();
     }
 
-    function details($id = NULL) {
-        $this->data['details'] = $this->receivable_model->getReceivableDetails($id);
-        $this->load->view($this->theme . 'receivable/details', $this->data);
-    }
+    // function details($id = NULL) {
+    //     $this->data['details'] = $this->receivable_model->getReceivableDetails($id);
+    //     $this->load->view($this->theme . 'receivable/details', $this->data);
+    // }
 
-    public function ajax_details($id)
-    {
-        $data = $this->receivable_model->get_details_by_id($id);
-        $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
-        echo json_encode($data);
-    }
+    // public function ajax_details($id)
+    // {
+    //     $data = $this->receivable_model->get_details_by_id($id);
+    //     $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+    //     echo json_encode($data);
+    // }
+
 
 }

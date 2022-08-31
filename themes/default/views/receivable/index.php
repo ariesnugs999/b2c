@@ -2,7 +2,7 @@
 
 <!-- Datatables -->
 <!-- <link href="<?= $assets ?>plugins/datatables/jquery.dataTables-1.12.1.min.css" rel="stylesheet" type="text/css" /> -->
-<link href="<?= $assets ?>plugins/datatables/buttons.dataTables-2.2.3.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="<?= $assets ?>plugins/datatables/buttons.dataTables-2.2.3.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- <script src="<?= $assets ?>plugins/jQuery/jquery-3.5.1.js"></script> -->
 <!-- <script src="<?= $assets ?>plugins/datatables/jquery-1.10.2.js"></script> -->
 <!-- <script src="<?= $assets ?>plugins/datatables/jquery-1.11.3.min.js"></script> -->
@@ -65,7 +65,7 @@
                             foreach ($view_invoice as $vi) {
                                 echo '<tr>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">
-                                        <a class="btn btn-sm btn-primary" data-toggle="modal" title="Lihat Detail" data-target="#myModal' . $vi->invoice_no .'">' . $vi->invoice_no . '</a>
+                                        <a href="#detail-modal" class="btn-theme tooltips detail_payable" data-original-title="Detail" data-toggle="modal" id="'.$vi->invoice_no.'">' . $vi->invoice_no . '</a>
                                     </td>';
                                 echo '<td class="text-center" style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . tgl_indo2($vi->invoice_date) . '</td>';
                                 echo '<td style="padding-top:2px;padding-bottom:2px;vertical-align:top;">' . $vi->finance_receipt_no . '</td>';
@@ -155,33 +155,15 @@
     </div>
 </section>
 
-<!--- MODAL-->
-<?php foreach($view_invoice as $vi){ 
-echo '
-<div class="modal fade" id="myModal' . $vi->invoice_no .'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'
-?>
+<div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Detail Receivable</h4>
+        <h4 class="modal-title" id="myModalLabel">Detail Payable</h4>
       </div>
-      <div class="modal-body">
-        <div class="table-responsive">
-            
-            <table class="table table-condensed">
-                <tr>
-                    <th class="info" colspan="3">Detail Pesanan yang Harus di kirim</th>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <th>:</th>
-
-                    <td><?= $r->receipt_date ?></td>
-                </tr>
-
-            </table>
-        </div>
+      <div class="modal-body" id="body-detail">
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -189,7 +171,20 @@ echo '
     </div>
   </div>
 </div>
-<?php } ?>
+
+<script type="text/javascript">
+
+  $('#RTable').dataTable();
+
+  $(document).on("click",".detail_payable",function(){
+    id = this.id;
+
+    url = "<?php echo base_url('receivable/form_detail_receivable'); ?>";
+
+    $('#body-detail').load(url,{id : id});
+  });
+
+</script>
 
 <script src="<?= $assets ?>plugins/bootstrap-datetimepicker/js/moment.min.js" type="text/javascript"></script>
 <script src="<?= $assets ?>plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>

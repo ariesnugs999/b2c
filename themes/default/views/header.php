@@ -169,7 +169,7 @@
                         <li id="categories_import"><a href="<?= site_url('categories/import'); ?>"><i class="fa fa-circle-o"></i> <?= lang('import_categories'); ?></a></li>
                     </ul>
                 </li> -->
-                <?php if ($this->session->userdata('store_id')) { ?>
+                <!-- <?php if ($this->session->userdata('store_id')) { ?> -->
                 <!-- <li class="treeview mm_sales">
                     <a href="#">
                         <i class="fa fa-shopping-cart"></i>
@@ -196,7 +196,7 @@
                         <li id="purchases_add_expense"><a href="<?= site_url('purchases/add_expense'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_expense'); ?></a></li>
                     </ul>
                 </li> -->
-                <?php } ?>
+                <!-- <?php } ?> -->
                 <!-- <li class="treeview mm_gift_cards">
                     <a href="#">
                         <i class="fa fa-credit-card"></i>
@@ -234,9 +234,9 @@
                         <li class="divider"></li>
                         <li id="customers_index"><a href="<?= site_url('customers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_customers'); ?></a></li>
                         <li id="customers_add"><a href="<?= site_url('customers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_customer'); ?></a></li>
-                        <li class="divider"></li>
+                        <!-- <li class="divider"></li>
                         <li id="suppliers_index"><a href="<?= site_url('suppliers'); ?>"><i class="fa fa-circle-o"></i> <?= lang('list_suppliers'); ?></a></li>
-                        <li id="suppliers_add"><a href="<?= site_url('suppliers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_supplier'); ?></a></li>
+                        <li id="suppliers_add"><a href="<?= site_url('suppliers/add'); ?>"><i class="fa fa-circle-o"></i> <?= lang('add_supplier'); ?></a></li> -->
                     </ul>
                 </li>
                 <!-- <li class="treeview mm_reports">
