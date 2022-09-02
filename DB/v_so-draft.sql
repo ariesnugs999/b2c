@@ -15,7 +15,8 @@ SELECT
 	(IFNULL(fri.total_credit1, 0) + IFNULL(nr.total_credit2, 0)) AS total_credit,
 	'SI' AS cek,
 	'' AS category,
-    fi.account_customer AS account_customer
+    fi.account_customer AS account_customer,
+    fi.limit_credit AS limit_credit
 
 				FROM paste_finance_invoice AS fi
 				LEFT JOIN
@@ -35,6 +36,8 @@ SELECT
 
 						WHERE nr.status_id='3' 
 						GROUP BY f1.invoice_no) AS nr ON nr.invoice_no=fi.invoice_no
+				LEFT JOIN
+						paste_marketing_customer pmc ON pmc.account=fi.account_customer
 
 				WHERE fi.category='SALES' AND fi.status_id='3'
 

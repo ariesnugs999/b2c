@@ -262,7 +262,7 @@
                     </ul>
                 </li> -->
 
-                <li class="treeview mm_settings">
+                <!-- <li class="treeview mm_settings">
                     <a href="#">
                         <i class="fa fa-cogs"></i>
                         <span><?= lang('settings'); ?></span>
@@ -281,10 +281,10 @@
                         <li class="divider"></li>
                         <?php if ($this->db->dbdriver != 'sqlite3') { ?>
                         <li id="settings_backups"><a href="<?= site_url('settings/backups'); ?>"><i class="fa fa-circle-o"></i> <?= lang('backups'); ?></a></li>
-                        <?php } ?>
+                        <?php } ?> -->
                         <!-- <li id="settings_updates"><a href="<?= site_url('settings/updates'); ?>"><i class="fa fa-circle-o"></i> <?= lang('updates'); ?></a></li> -->
-                    </ul>
-                </li>
+                    <!-- </ul>
+                </li> -->
                 <?php } else { ?>
                 <li class="mm_products"><a href="<?= site_url('products'); ?>"><i class="fa fa-barcode"></i> <span><?= lang('products'); ?></span></a></li>
                 <li class="mm_categories"><a href="<?= site_url('categories'); ?>"><i class="fa fa-folder-open"></i> <span><?= lang('categories'); ?></span></a></li>
